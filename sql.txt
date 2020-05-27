@@ -1,0 +1,164 @@
+CREATE TABLE `user` (
+                        `uid`	INT	NOT NULL,
+                        `user_id`	VARCHAR(50)	NULL,
+                        `pwd`	VARCHAR(50)	NULL,
+                        `grade`	VARCHAR(20)	NULL,
+                        `certified`	BOOLEAN	NULL,
+                        `nickname`	VARCHAR(20)	NULL
+);
+
+CREATE TABLE `review board` (
+                                `id`	INT	NOT NULL,
+                                `title`	VARCHAR(50)	NULL,
+                                `content`	VARCHAR(255)	NULL,
+                                `date`	DATE	NULL,
+                                `views`	INT	NULL,
+                                `uid`	INT	NOT NULL
+);
+
+CREATE TABLE `room board` (
+                              `id`	INT	NOT NULL,
+                              `title`	VARCHAR(50)	NULL,
+                              `content`	VARCHAR(255)	NULL,
+                              `date`	DATE	NULL,
+                              `views`	INT	NULL,
+                              `uid`	INT	NOT NULL
+);
+
+CREATE TABLE `info board` (
+                              `id`	INT	NOT NULL,
+                              `title`	VARCHAR(50)	NULL,
+                              `content`	VARCHAR(255)	NULL,
+                              `date`	DATE	NULL,
+                              `views`	INT	NULL,
+                              `uid`	INT	NOT NULL
+);
+
+CREATE TABLE `message` (
+                           `id`	INT	NOT NULL,
+                           `uid1`	INT	NOT NULL,
+                           `uid2`	INT	NOT NULL,
+                           `content`	VARCHAR(255)	NULL
+);
+
+CREATE TABLE `trade board` (
+                               `id`	INT	NOT NULL,
+                               `title`	VARCHAR(50)	NULL,
+                               `content`	VARCHAR(255)	NULL,
+                               `Field`	DATE	NULL,
+                               `views`	INT	NULL,
+                               `uid`	INT	NOT NULL
+);
+
+CREATE TABLE `roommate board` (
+                                  `id`	INT	NOT NULL,
+                                  `title`	VARCHAR(50)	NULL,
+                                  `content`	VARCHAR(100)	NULL,
+                                  `date`	DATE	NULL,
+                                  `views`	INT	NULL,
+                                  `uid`	INT	NOT NULL
+);
+
+CREATE TABLE `location` (
+                            `id`	INT	NOT NULL,
+                            `latitude`	DOUBLE	NULL,
+                            `longitude`	DOUBLE	NULL,
+                            `bid`	INT	NOT NULL
+);
+
+CREATE TABLE `comments` (
+                            `id`	INT	NOT NULL,
+                            `uid`	INT	NOT NULL,
+                            `content`	VARCHAR(255)	NULL,
+                            `review_id`	INT	NOT NULL,
+                            `info_id`	INT	NOT NULL,
+                            `mate_id`	INT	NOT NULL,
+                            `trade_id`	INT	NOT NULL,
+                            `room_id`	INT	NOT NULL
+);
+
+CREATE TABLE `favorites` (
+                             `id`	INT	NOT NULL,
+                             `uid`	INT	NOT NULL,
+                             `review_id`	INT	NOT NULL,
+                             `info_id`	INT	NOT NULL,
+                             `mate_id`	INT	NOT NULL,
+                             `trade_id`	INT	NOT NULL,
+                             `room_id`	INT	NOT NULL
+);
+
+CREATE TABLE `goods` (
+                         `id`	INT	NOT NULL,
+                         `uid`	INT	NOT NULL,
+                         `review_id`	INT	NOT NULL,
+                         `info_id`	INT	NOT NULL,
+                         `mate_id`	INT	NOT NULL,
+                         `trade_id`	INT	NOT NULL,
+                         `room_id`	INT	NOT NULL
+);
+
+CREATE TABLE `picture` (
+                           `id`	INT	NOT NULL,
+                           `review_id`	INT	NOT NULL,
+                           `info_id`	INT	NOT NULL,
+                           `mate_id`	INT	NOT NULL,
+                           `trade_id`	INT	NOT NULL,
+                           `room_id`	INT	NOT NULL,
+                           `url`	VARCHAR(255)	NULL
+);
+
+ALTER TABLE `user` ADD CONSTRAINT `PK_USER` PRIMARY KEY (
+                                                         `uid`
+    );
+
+ALTER TABLE `review board` ADD CONSTRAINT `PK_REVIEW BOARD` PRIMARY KEY (
+                                                                         `id`
+    );
+
+ALTER TABLE `room board` ADD CONSTRAINT `PK_ROOM BOARD` PRIMARY KEY (
+                                                                     `id`
+    );
+
+ALTER TABLE `info board` ADD CONSTRAINT `PK_INFO BOARD` PRIMARY KEY (
+                                                                     `id`
+    );
+
+ALTER TABLE `message` ADD CONSTRAINT `PK_MESSAGE` PRIMARY KEY (
+                                                               `id`,
+                                                               `uid1`
+    );
+
+ALTER TABLE `trade board` ADD CONSTRAINT `PK_TRADE BOARD` PRIMARY KEY (
+                                                                       `id`
+    );
+
+ALTER TABLE `roommate board` ADD CONSTRAINT `PK_ROOMMATE BOARD` PRIMARY KEY (
+                                                                             `id`
+    );
+
+ALTER TABLE `location` ADD CONSTRAINT `PK_LOCATION` PRIMARY KEY (
+                                                                 `id`
+    );
+
+ALTER TABLE `comments` ADD CONSTRAINT `PK_COMMENTS` PRIMARY KEY (
+                                                                 `id`
+    );
+
+ALTER TABLE `favorites` ADD CONSTRAINT `PK_FAVORITES` PRIMARY KEY (
+                                                                   `id`
+    );
+
+ALTER TABLE `goods` ADD CONSTRAINT `PK_GOODS` PRIMARY KEY (
+                                                           `id`
+    );
+
+ALTER TABLE `picture` ADD CONSTRAINT `PK_PICTURE` PRIMARY KEY (
+                                                               `id`
+    );
+
+ALTER TABLE `message` ADD CONSTRAINT `FK_user_TO_message_1` FOREIGN KEY (
+                                                                         `uid1`
+    )
+    REFERENCES `user` (
+                       `uid`
+        );
