@@ -5,19 +5,8 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <style>
-#price {
-	background-color: #1D6A96;
-	padding: 2px 4px;
-	border-radius: 7px;
-	font-size: 0.7em;
-	color: white;
-}
-
-#price:hover {
-	background-color: #85B8CB;
-}
-
 .overlay_info {
 	border-radius: 6px;
 	margin-bottom: 12px;
@@ -26,6 +15,7 @@
 	border: 1px solid #ccc;
 	border-bottom: 2px solid #ddd;
 	background-color: #fff;
+	bottom: 13px;
 }
 
 .overlay_info:nth-of-type(n) {
@@ -35,43 +25,76 @@
 
 .overlay_info a {
 	display: block;
-	background: #d95050;
-	background: #d95050
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png)
-		no-repeat right 14px center;
+	background: #2196f3;
 	text-decoration: none;
 	color: #fff;
-	padding: 12px 36px 12px 14px;
+	padding: 12px 30px 12px 14px;
 	font-size: 14px;
 	border-radius: 6px 6px 0 0
 }
 
-.overlay_info a strong {
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_icon.png)
-		no-repeat;
-	padding-left: 27px;
+.overlay_info .fa-home {
+	font-size: 1.2em;
+}
+
+.overlay_info .fa-times {
+	font-size: 1.3em;
+	color: white;
+	float: right;
+	position: relative;
+	bottom: 32px;
+	right: 10px;
+}
+
+.overlay_info a .title {
+	padding-left: 10px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 130px;
+	display: inline-block;
+	line-height: 14px;
 }
 
 .overlay_info .desc {
 	padding: 14px;
-	position: relative;
-	min-width: 190px;
-	height: 56px
+	padding-bottom: 0px;
+	position: relative; 
+	top: -18px;
+	width: 190px;
+	height: 56px;
+	display: flex;
+	flex-direction: row;
 }
 
 .overlay_info img {
 	vertical-align: top;
 }
 
-.overlay_info .address {
+.overlay_info .sale-info {
+	padding-left: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.overlay_info .price {
 	font-size: 12px;
 	color: #333;
-	position: absolute;
+/* 	position: absolute;
 	left: 80px;
 	right: 14px;
-	top: 24px;
+	top: 24px; */
 	white-space: normal
+}
+
+.overlay_info .create_at {
+	font-size: 8px;
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	color: #2196f3;
 }
 
 .overlay_info:after {
@@ -132,49 +155,73 @@
 			}
 		]
  		for (position of positions) {
+ 			var imageSrc = 'images/finish_marker.png',
+ 			imageSize = new kakao.maps.Size(25, 25);
+ 			var finishMarkerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+			
 			var marker = new kakao.maps.Marker({
 				map: map,
 				position: position.latlng,
-				title: position.title
+				title: position.title,
+				image: finishMarkerImage
 			});
 		} 
 		
 		// 등록된 매물들의 마커 표시
 		var sales = [
-			{
+			{	
 				latitude: 37.2968324,
 				longitude:  127.0311737,
+				title: "첫번째 자취방!!!!!!!!!!!!!!!!",
 				image: "",
 				deposit: 500,
 				rent: 30,
+				created_at: '2020-06-01'
 			},
 			{
 				latitude: 37.2979503,
 				longitude:  127.0288282,
+				title: "두번째 자취방!",
 				image: "",
 				deposit: 300,
 				rent: 27,
+				created_at: '2020-06-02'
 			},
-/* 			{
+ 			{
 				latitude: 37.2953918,
 				longitude:  127.0267069,
+				title: "세번째 자취방!",
 				image: "",
 				deposit: 500,
 				rent: 35,
-			}, */
-		]
-		function makeOverListener(map, saleMarker) {
+				created_at: '2020-06-03'
+			}, 
+		];
+		
+		function closeSaleInfo(target) {
+			openedSaleMarker.setVisible(true);
+			openedCustomOverlay.setMap(null);
+		}
+		
+		function makeOverListener(map, sale, saleMarker) {
 			return function() {
 				if (openedSaleMarker != null) {
 					openedSaleMarker.setVisible(true);	
 				}
 				openedCustomOverlay.setMap(null);
 				var content = '<div class="overlay_info">';
-				content += '    <a href="https://place.map.kakao.com/17600274" target="_blank"><strong>월정리 해수욕장</strong></a>';
+				content += '    <a href="" target="_blank"><i class="fas fa-home"></i>'
+				content += '		<div class="title">'+sale.title+'</div></a>'
+				content += '		<i class="fas fa-times close-btn" onclick="closeSaleInfo(this)"></i>'
 				content += '    <div class="desc">';
 				content += '        <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">';
-				content += '        <span class="address">제주특별자치도 제주시 구좌읍 월정리 33-3</span>';
-				content += '    </div>';
+				content += '        <div class="sale-info">';
+
+				content += '        <div class="price deposit">보증금: '+sale.deposit+'</div>';
+				content += '        <div class="price rent">월세: '+sale.rent+'</div>';
+				content += '        <div class="price create_at">'+sale.created_at+'</div>';
+
+				content += '    </div></div>';
 				content += '</div>';
 	  			var customOverlay = new kakao.maps.CustomOverlay({
 					clickable: true,
@@ -189,72 +236,22 @@
 			}
 		}
 		
+		
+		
  		for (sale of sales){
- 			
+ 			var imageSrc = 'images/sale_marker.png',
+ 			imageSize = new kakao.maps.Size(30, 30)
+ 			var saleMarkerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 			// 마커 생성
 			const saleMarker = new kakao.maps.Marker({
 				map: map,
 				position: new kakao.maps.LatLng(sale.latitude, sale.longitude),
-				title: "구상"
+				image: saleMarkerImage
 			});
 			
-			// 인포윈도우를 생성합니다
-
-			kakao.maps.event.addListener(saleMarker, "click", makeOverListener(map, saleMarker))
-
- 			 
- 			
- 			
- 			
-/*  			
-			var marker = new kakao.maps.Marker({
-				map: map,
-				position: position.latlng,
-				title: position.title
-			});
-  			var content = '<div id="price-wrapper"><div id="price"><span class="deposit">'+sale.deposit+'</span>'+'/'+'<span class="rent">'+sale.rent+'</span></span></div></div>';
-  			var customOverlay = new kakao.maps.CustomOverlay({
-				clickable: true,
-				content: content,
-				position: new kakao.maps.LatLng(sale.latitude, sale.longitude),
-			});
-			customOverlay.setMap(map);   */
-			
-
-			
-/* 			kakao.maps.event.addListener(customOverlay, "click", function(overlay) {
-				console.log("click");
-				var content = '<div class="overlay_info">';
-				content += '    <a href="https://place.map.kakao.com/17600274" target="_blank"><strong>월정리 해수욕장</strong></a>';
-				content += '    <div class="desc">';
-				content += '        <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">';
-				content += '        <span class="address">제주특별자치도 제주시 구좌읍 월정리 33-3</span>';
-				content += '    </div>';
-				content += '</div>';
-				
-				overlay.setContent(content);
-			}); */
-		}
-		var select = document.querySelectorAll("#price-wrapper");
-		select.forEach((element) => {
-			element.addEventListener("click", function(e) {
-				target = e.target
-				while(target.getAttribute('id') != "price-wrapper") {
-					target = target.parentNode;
-				}
-				var deposit = target.querySelector('.deposit').innerText
-				var rent = target.querySelector('.rent').innerText
-				var content = '<div class="overlay_info">';
-				content += '    <a href="https://place.map.kakao.com/17600274" target="_blank"><strong>월정리 해수욕장</strong></a>';
-				content += '    <div class="desc">';
-				content += '        <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">';
-				content += '        <span class="deposit">보증금: '+deposit+'</span>';
-				content += '        <span class="rent">월세: '+rent+'</span>';
-				content += '    </div>';
-				content += '</div>';
-				target.innerHTML = content;
-			})
-		})
+			// 인포윈도우를  클릭 이벤트 생성
+			kakao.maps.event.addListener(saleMarker, "click", makeOverListener(map, sale, saleMarker))
+ 		}
 
 		
 		
