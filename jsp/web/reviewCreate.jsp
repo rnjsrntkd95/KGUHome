@@ -63,7 +63,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                                 <!-- Break -->
                                 <div class="12u$">
                                     <ul class="actions">
-                                        <li><input type="submit" value="작성완료" class="special"/></li>
+                                        <li><input type="submit" value="작성완료" class="special"
+                                                   onclick="location.href='roomCreate.jsp'"/></li>
                                         <li><input type="reset" value="초기화"/></li>
                                     </ul>
                                 </div>
@@ -76,21 +77,25 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                             if (request.getParameter("title") != null && request.getParameter("content") != null) {
                                 title = request.getParameter("title");
                                 content = request.getParameter("content");
-                                if (content.length()==0) {
+                                if (content.length() == 0) {
                         %>
                         <script language="javascript">
                             alert("내용이 없습니다");
                         </script>
                         <%
-                                } else {
-                                   reviewBoard rb = new reviewBoard();
-                                   rb.insertReview(title,content);
+                        } else {
+                            reviewBoard rb = new reviewBoard();
+                            rb.insertReview(title, content);
+                        %>
+                        <script language="javascript">
+                            alert("작성 완료");
+                            window.location.href = 'http://localhost:8080';
+                        </script>
+                        <%
                                 }
                             }
                         %>
 
-                        <%=title%>
-                        <%=content%>
 
                     </div>
                 </div>
