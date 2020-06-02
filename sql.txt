@@ -7,7 +7,7 @@ CREATE TABLE `user` (
                         `nickname`	VARCHAR(20)	NULL
 );
 
-CREATE TABLE `review board` (
+CREATE TABLE `reviewboard` (
                                 `id`	INT	NOT NULL,
                                 `title`	VARCHAR(50)	NULL,
                                 `content`	VARCHAR(255)	NULL,
@@ -16,7 +16,7 @@ CREATE TABLE `review board` (
                                 `uid`	INT	NOT NULL
 );
 
-CREATE TABLE `room board` (
+CREATE TABLE `roomboard` (
                               `id`	INT	NOT NULL,
                               `title`	VARCHAR(50)	NULL,
                               `content`	VARCHAR(255)	NULL,
@@ -25,7 +25,7 @@ CREATE TABLE `room board` (
                               `uid`	INT	NOT NULL
 );
 
-CREATE TABLE `info board` (
+CREATE TABLE `infoboard` (
                               `id`	INT	NOT NULL,
                               `title`	VARCHAR(50)	NULL,
                               `content`	VARCHAR(255)	NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `message` (
                            `content`	VARCHAR(255)	NULL
 );
 
-CREATE TABLE `trade board` (
+CREATE TABLE `tradeboard` (
                                `id`	INT	NOT NULL,
                                `title`	VARCHAR(50)	NULL,
                                `content`	VARCHAR(255)	NULL,
@@ -50,7 +50,7 @@ CREATE TABLE `trade board` (
                                `uid`	INT	NOT NULL
 );
 
-CREATE TABLE `roommate board` (
+CREATE TABLE `roommateboard` (
                                   `id`	INT	NOT NULL,
                                   `title`	VARCHAR(50)	NULL,
                                   `content`	VARCHAR(100)	NULL,
