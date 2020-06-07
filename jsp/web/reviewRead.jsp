@@ -62,7 +62,10 @@
 												<p><%=body%></p>
 											</div>
 										</div>
-
+									<ul class="actions">
+										<li><a href="reviewEdit.jsp?id=<%=id%>" class="button special">수정하기</a></li>
+										<li><a href="#" class="button">삭제하기</a></li>
+									</ul>
 									<hr class="major" />
 
 								</section>
