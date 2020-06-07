@@ -52,6 +52,7 @@
 													reviewBoard rb = new reviewBoard();
 													request.setCharacterEncoding("euc-kr");
 													String id = request.getParameter("id");
+													rb.addViewCount(id);
 
 													ArrayList<String> result = new ArrayList<String>();
 													result=rb.selectOneReview(id);
@@ -64,7 +65,7 @@
 										</div>
 									<ul class="actions">
 										<li><a href="reviewEdit.jsp?id=<%=id%>" class="button special">수정하기</a></li>
-										<li><a href="#" class="button">삭제하기</a></li>
+										<li><a href="reviewDelete.jsp?id=<%=id%>" class="button">삭제하기</a></li>
 									</ul>
 									<hr class="major" />
 

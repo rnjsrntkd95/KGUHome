@@ -32,7 +32,7 @@ public class reviewBoard {
     }
     public ArrayList<String> selectReview(){
         System.out.println("Select * Review");
-        String sql = "SELECT * FROM reviewboard ORDER BY date, time";
+        String sql = "SELECT * FROM reviewboard ORDER BY date, time ASC" ;
 
         ArrayList<String> result = new ArrayList<String>();
         try{
@@ -93,6 +93,50 @@ public class reviewBoard {
             db.pstmt.setString(1, title);
             db.pstmt.setString(2, content);
 
+            db.pstmt.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void addViewCount(String id){
+        String sql = "SELECT views FROM reviewboard where id="+id;
+
+        String result="";
+        try{
+            db.stmt = db.con.createStatement();
+            db.rs = db.stmt.executeQuery(sql);
+
+            while(db.rs.next()){
+                result=db.rs.getString("views");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        int number = Integer.parseInt(result);
+        number++;
+
+        sql = "Update reviewboard set views = ? where id="+id;
+
+        try{
+            db.pstmt = db.con.prepareStatement(sql);
+            db.pstmt.setString(1, Integer.toString(number));
+
+            db.pstmt.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void deleteReview(String id){
+        String sql = "delete from reviewboard where id="+id;
+
+        try{
+            db.pstmt = db.con.prepareStatement(sql);
             db.pstmt.executeUpdate();
 
         } catch (SQLException throwables) {
