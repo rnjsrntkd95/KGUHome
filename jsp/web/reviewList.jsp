@@ -63,15 +63,19 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 							<th>id</th>
 							<th>title</th>
 							<th>date</th>
-						</tr>
+                            <th>time</th>
+                            <th>views</th>
+                        </tr>
 						</thead>
 						<tbody>
-						<%for(int i=0;i<list.size()-5;i+=6){%>
+						<%for(int i=0;i<list.size()-6;i+=7){%>
 						<tr>
 							<td><%=list.get(i)%></td>
-							<td><a href=""><%=list.get(i+1)%></a></td>
+							<td><a href="reviewRead.jsp?id=<%=list.get(i)%>"><%=list.get(i+1)%></a></td>
 							<td><%=list.get(i+3)%></td>
-						</tr>
+                            <td><%=list.get(i+4)%></td>
+                            <td><%=list.get(i+5)%></td>
+                        </tr>
 						<%}%>
 						</tbody>
 					</table>

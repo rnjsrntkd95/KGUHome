@@ -1,5 +1,6 @@
 package jiwoo.reviewBoard;
 
+import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
 import jiwoo.database.DBcon;
 
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ public class reviewBoard {
             db.pstmt.setString(1, title);
             db.pstmt.setString(2, content);
             db.pstmt.setString(3, "0");
-            db.pstmt.setString(4, "0");
+            db.pstmt.setString(4, "1");
 
             db.pstmt.executeUpdate();
 
@@ -29,7 +30,8 @@ public class reviewBoard {
         }
     }
     public ArrayList<String> selectReview(){
-        String sql = "SELECT * FROM reviewboard ORDER BY date";
+        System.out.println("Select * Review");
+        String sql = "SELECT * FROM reviewboard ORDER BY date, time";
 
         ArrayList<String> result = new ArrayList<String>();
         try{
@@ -41,6 +43,7 @@ public class reviewBoard {
                 result.add(db.rs.getString("title"));
                 result.add(db.rs.getString("content"));
                 result.add(db.rs.getString("date"));
+                result.add(db.rs.getString("time"));
                 result.add(db.rs.getString("views"));
                 result.add(db.rs.getString("uid"));
             }
@@ -52,7 +55,8 @@ public class reviewBoard {
         return result;
     }
 
-    public ArrayList<String> selectReview(int id){
+    public ArrayList<String> selectOneReview(String id){
+        System.out.println("Select * One Review");
         String sql = "SELECT * FROM reviewboard where id="+id;
 
         ArrayList<String> result = new ArrayList<String>();
@@ -65,6 +69,7 @@ public class reviewBoard {
                 result.add(db.rs.getString("title"));
                 result.add(db.rs.getString("content"));
                 result.add(db.rs.getString("date"));
+                result.add(db.rs.getString("time"));
                 result.add(db.rs.getString("views"));
                 result.add(db.rs.getString("uid"));
             }

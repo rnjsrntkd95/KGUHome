@@ -9,7 +9,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 <head>
     <title>글 작성 페이지</title>
-
+    <meta charset="euc-kr"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <!--[if lte IE 8]>
     <script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -49,7 +49,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
                         <h3>글 작성</h3>
 
-                        <form method="post" action="">
+                        <form method="get" action="">
                             <div class="row uniform">
                                 <div class="6u 12u$(xsmall)">
                                     <input type="text" name="title" id="title" value="" placeholder="Title"/>
@@ -74,6 +74,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <%
                             String title = null;
                             String content = null;
+                            request.setCharacterEncoding("euc-kr");
                             if (request.getParameter("title") != null && request.getParameter("content") != null) {
                                 title = request.getParameter("title");
                                 content = request.getParameter("content");
