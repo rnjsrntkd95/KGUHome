@@ -4,6 +4,7 @@ import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
 import jiwoo.database.DBcon;
 
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class reviewBoard {
 
     public ArrayList<String> selectOneReview(String id){
         System.out.println("Select * One Review");
+        System.out.println("id : "+id);
         String sql = "SELECT * FROM reviewboard where id="+id;
 
         ArrayList<String> result = new ArrayList<String>();
@@ -79,6 +81,23 @@ public class reviewBoard {
         }
 
         return result;
+    }
+
+    public void updateReview(String title, String content, String id){
+        String sql = "Update reviewboard set title = ?, content = ? where id="+id;
+        System.out.println("title : "+title);
+        System.out.println("content : "+content);
+        System.out.println("id : "+id);
+        try{
+            db.pstmt = db.con.prepareStatement(sql);
+            db.pstmt.setString(1, title);
+            db.pstmt.setString(2, content);
+
+            db.pstmt.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
 }
