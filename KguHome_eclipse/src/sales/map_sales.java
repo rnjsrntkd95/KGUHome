@@ -39,17 +39,16 @@ public class map_sales extends HttpServlet {
 		Statement stmt;
 		ResultSet res;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DBcon.getConnection();
-			System.out.println("DB 연결 성공");
-			String sql = String.format("SELECT * FROM LOCATION");
-			
-			stmt = conn.createStatement();
-			res = stmt.executeQuery(sql);
-			
-			while(res.next()) {
-				System.out.println(res.getString("latitude"));
-			}
+//			Class.forName("com.mysql.jdbc.Driver");
+//	
+//			String sql = String.format("SELECT * FROM LOCATION");
+//			
+//			stmt = conn.createStatement();
+//			res = stmt.executeQuery(sql);
+//			
+//			while(res.next()) {
+//				System.out.println(res.getString("latitude"));
+//			}
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

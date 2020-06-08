@@ -6,7 +6,7 @@
 	myPageBoard mp = new myPageBoard();
 %>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>My Page</title>
@@ -45,7 +45,7 @@
 			<div>
 				<section id="banner">
 				<!-- 프로필 사진 변경할 수 있도록 추후 수정 -->
-				<span><img class="profile" src = "images/default_profile.jpg" alt="" /></span>
+				<span><img class="profile" src = "image/default_profile.jpg" alt="" /></span>
 				<div class="userinfo" >	
 					<h2>Nickname</h2>
 					<h3>ID</h3>
@@ -62,15 +62,15 @@
             <section>
 		         <div class="boxABC">
 					<section class="box_item">
-						<a href="#"><img src="images/letter.png" alt="" /></a>
+						<a href="#"><img src="image/letter.png" alt="" /></a>
 						<h2>쪽지함</h2>
 					</section>
 					<section class="box_item">
-						<a href="#"><img src="images/star.png" alt="" /></a>
+						<a href="#"><img src="image/star.png" alt="" /></a>
 						<h2>즐겨찾기</h2>
 					</section>
 					<section class="box_item">
-						<a href="#"><img src="images/edit_writing.png" alt="" /></a>
+						<a href="#"><img src="image/edit_writing.png" alt="" /></a>
 						<h2>내 글 관리</h2>
 					</section>	
 		         </div>
