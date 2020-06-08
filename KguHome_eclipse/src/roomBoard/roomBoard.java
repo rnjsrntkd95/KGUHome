@@ -1,6 +1,6 @@
-package jiwoo.roomBoard;
+package roomBoard;
 
-import jiwoo.database.DBcon;
+import database.DBcon;
 
 import java.sql.SQLException;
 

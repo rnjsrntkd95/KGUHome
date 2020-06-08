@@ -1,6 +1,6 @@
-package eunhye.message;
+package message;
 
-import eunhye.database.DBcon;
+import database.DBcon;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ public class messageSend {
 
         try{
             db.pstmt = db.con.prepareStatement(sql);
-            db.pstmt.setInt(1, Integer.parseInt("1")); //아직 본인 아이디 가져오는거 적용안하고 테스트위해서 0넣음
+            db.pstmt.setInt(1, Integer.parseInt("1")); 
             db.pstmt.setInt(2, Integer.parseInt(uid2));
             db.pstmt.setString(3, content);
 

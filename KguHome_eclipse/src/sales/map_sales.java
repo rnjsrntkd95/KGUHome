@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import database.DBcon;
+
 /**
  * Servlet implementation class map_sales
  */
@@ -38,8 +40,8 @@ public class map_sales extends HttpServlet {
 		ResultSet res;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = MapDAO.getConnection();
-			System.out.println("DB ¿¬°á ¼º°ø");
+			conn = DBcon.getConnection();
+			System.out.println("DB ì—°ê²° ì„±ê³µ");
 			String sql = String.format("SELECT * FROM LOCATION");
 			
 			stmt = conn.createStatement();

@@ -1,5 +1,5 @@
-<%@ page import="hyeyeon.database.DBcon" %>
-<%@ page import="hyeyeon.myPageBoard.myPageBoard" %>
+<%@ page import="database.DBcon" %>
+<%@ page import="myPageBoard.myPageBoard" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	int uid = 1;	// 로그인 정보 가져올 것!

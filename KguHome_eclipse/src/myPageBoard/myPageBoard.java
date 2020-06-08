@@ -1,13 +1,16 @@
-package hyeyeon.myPageBoard;
+package myPageBoard;
 
-import hyeyeon.database.DBcon;
+import database.DBcon;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class myPageBoard {
     public DBcon db;
-    
+	public Statement stmt;
+	public ResultSet res;    
     private String nickname = "??";
     private String userId = "??";
     private String grade = "??";
@@ -22,8 +25,8 @@ public class myPageBoard {
     	String query = "select nickname from user where uid="+uid;
 
         try{
-        	db.stmt = db.con.createStatement();
-        	db.rs = db.stmt.executeQuery(query);
+        	stmt = db.con.createStatement();
+        	res = stmt.executeQuery(query);
             
         	nickname = db.rs.getString("nickname");
 
@@ -39,8 +42,8 @@ public class myPageBoard {
 	    	String query = "select user_id from user where uid="+uid;
 	
 	        try{
-	        	db.stmt = db.con.createStatement();
-	        	db.rs = db.stmt.executeQuery(query);
+	        	stmt = db.con.createStatement();
+	        	res = stmt.executeQuery(query);
 	            
 	        	userId = db.rs.getString("user_id");
 	
@@ -57,10 +60,10 @@ public class myPageBoard {
     	String query = "select grade from user where uid="+uid;
 
         try{
-        	db.stmt = db.con.createStatement();
-        	db.rs = db.stmt.executeQuery(query);
+        	stmt = db.con.createStatement();
+        	res = stmt.executeQuery(query);
             
-        	grade = db.rs.getString("grade");
+        	grade = res.getString("grade");
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -75,10 +78,10 @@ public class myPageBoard {
 	    	String query = "select profile from user where uid="+uid;
 	
 	        try{
-	        	db.stmt = db.con.createStatement();
-	        	db.rs = db.stmt.executeQuery(query);
+	        	stmt = db.con.createStatement();
+	        	res = stmt.executeQuery(query);
 	            
-	        	profileImage = db.rs.getURL("profile");
+	        	profileImage = res.getURL("profile");
 	
 	        } catch (SQLException throwables) {
 	            throwables.printStackTrace();

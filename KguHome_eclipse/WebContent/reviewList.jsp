@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=euc-kr" language="java" import="java.lang.String" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="jiwoo.reviewBoard.reviewBoard" %>
+<%@ page import="reviewBoard.reviewBoard" %>
 
 <!DOCTYPE HTML>
 <!--

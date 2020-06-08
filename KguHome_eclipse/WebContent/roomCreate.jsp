@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=euc-kr" language="java" import="java.lang.String" %>
-<%@ page import="jiwoo.database.DBcon" %>
-<%@ page import="jiwoo.reviewBoard.reviewBoard" %>
-<%@ page import="jiwoo.roomBoard.roomBoard" %>
+<%@ page import="database.DBcon" %>
+<%@ page import="reviewBoard.reviewBoard" %>
+<%@ page import="roomBoard.roomBoard" %>
 <!--
 Editorial by HTML5 UP
 html5up.net | @ajlkn

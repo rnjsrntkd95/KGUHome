@@ -1,13 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: enhh
-  Date: 2020-06-08
-  Time: 오전 9:38
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="eunhye.database.DBcon" %>
-<%@ page import="eunhye.message.message" %>
+<%@ page import="database.DBcon" %>
+<%@ page import="message.messageSend" %>
 <html>
 <head>
     <title>쪽지 보내기</title>
@@ -76,7 +70,7 @@
                         <%
                             String uid2 = null;
                             String content = null;
-                            message m;
+                            messageSend m;
                             if (request.getParameter("uid2") != null && request.getParameter("content") != null) {
                                 uid2 = request.getParameter("uid2");
                                 content = request.getParameter("content");
@@ -87,7 +81,7 @@
                         </script>
                         <%
                         } else {
-                            m  = new message();
+                            m  = new messageSend();
                             m.insertMessage("1", uid2, content);
                         %>
                         <script language="javascript">

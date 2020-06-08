@@ -1,8 +1,6 @@
 <%@ page contentType = "text/html;charset=utf-8" import="java.sql.*"%>
-<%@ page import="eunhye.database.DBcon" %>
-<%@ page import="eunhye.message.message" %>
-<%
-%>
+<%@ page import="database.DBcon" %>
+
 <html>
 <head>
     <title>쪽지함</title>

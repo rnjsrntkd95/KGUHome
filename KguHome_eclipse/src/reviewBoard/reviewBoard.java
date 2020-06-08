@@ -1,15 +1,20 @@
-package jiwoo.reviewBoard;
+package reviewBoard;
 
 import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
-import jiwoo.database.DBcon;
+import database.DBcon;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class reviewBoard {
     public DBcon db;
+	Statement stmt;
+	ResultSet res;
+    
     public reviewBoard(){
         db = new DBcon();
     }
@@ -36,8 +41,8 @@ public class reviewBoard {
 
         ArrayList<String> result = new ArrayList<String>();
         try{
-            db.stmt = db.con.createStatement();
-            db.rs = db.stmt.executeQuery(sql);
+            stmt = db.con.createStatement();
+            res = stmt.executeQuery(sql);
 
             while(db.rs.next()){
                 result.add(db.rs.getString("id"));
@@ -63,8 +68,8 @@ public class reviewBoard {
 
         ArrayList<String> result = new ArrayList<String>();
         try{
-            db.stmt = db.con.createStatement();
-            db.rs = db.stmt.executeQuery(sql);
+            stmt = db.con.createStatement();
+            res = stmt.executeQuery(sql);
 
             while(db.rs.next()){
                 result.add(db.rs.getString("id"));
@@ -92,7 +97,6 @@ public class reviewBoard {
             db.pstmt = db.con.prepareStatement(sql);
             db.pstmt.setString(1, title);
             db.pstmt.setString(2, content);
-
             db.pstmt.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -105,8 +109,8 @@ public class reviewBoard {
 
         String result="";
         try{
-            db.stmt = db.con.createStatement();
-            db.rs = db.stmt.executeQuery(sql);
+            stmt = db.con.createStatement();
+            res = stmt.executeQuery(sql);
 
             while(db.rs.next()){
                 result=db.rs.getString("views");
