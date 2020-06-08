@@ -89,6 +89,16 @@
 	white-space: normal
 }
 
+.overlay_info .bookmark_btn {
+	color: #2196f3;
+	position: relative;
+	left: 193px;
+	background: none;
+	border: 0px;
+	outline: 0;
+	z-index: 10;
+}
+
 .overlay_info .create_at {
 	font-size: 8px;
 	display: flex;
@@ -114,10 +124,16 @@
 </head>
 <body>
 	<p id="result"></p>
-	<div id="map" style="width: 800px; height: 700px;"></div>
+	<%
+		String data = (String)request.getAttribute("test");
+		out.println("자료는(forward)" + data);
+	%>
+	<div id="map" style="width: 400px; height: 400px;"></div>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=291ae91548b72e5c96e2ad42f5772f46"></script>
 	<script>
+		console.log(<%=data%>);
+	
 		var container = document.getElementById('map');
 		var options = {
 			center: new kakao.maps.LatLng(37.3004755, 127.034374),
@@ -213,14 +229,14 @@
 				content += '    <a href="" target="_blank"><i class="fas fa-home"></i>'
 				content += '		<div class="title">'+sale.title+'</div></a>'
 				content += '		<i class="fas fa-times close-btn" onclick="closeSaleInfo(this)"></i>'
+			 	content += ' 		<button class="bookmark_btn" type="button" onclick="checkingBookmark(this)"><i class="far fa-star"></i></button>'; 
+
 				content += '    <div class="desc">';
 				content += '        <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">';
 				content += '        <div class="sale-info">';
-
 				content += '        <div class="price deposit">보증금: '+sale.deposit+'</div>';
 				content += '        <div class="price rent">월세: '+sale.rent+'</div>';
 				content += '        <div class="price create_at">'+sale.created_at+'</div>';
-
 				content += '    </div></div>';
 				content += '</div>';
 	  			var customOverlay = new kakao.maps.CustomOverlay({
@@ -263,6 +279,29 @@
 	<script>
 		var registerMarker = new kakao.maps.Marker();
 		var myInfoWindow = new kakao.maps.InfoWindow();
+		
+		// 즐겨찾기 마크
+		function checkingBookmark(target) {
+			if (target.childNodes[0].getAttribute('data-prefix') == 'far')
+				target.childNodes[0].setAttribute('data-prefix', 'fas')
+			else
+				target.childNodes[0].setAttribute('data-prefix', 'far')
+				
+			// 즐겨찾기 request 송신
+/*			$.ajax({
+                type: "POST",
+                url: "",
+                data: {},
+                dataType: "json",
+                async: true,
+                success: function (response) {
+                    $.each(response, function (key, value) {
+        
+                    )
+                }
+            })
+*/
+		}
 
 		// 클릭한 지점 마커 표시 위도 경도 표시
 		kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
@@ -308,7 +347,6 @@
 		    resultDiv.innerHTML = message;
 		});
 		
-
 		</script>
 </body>
 </html>
