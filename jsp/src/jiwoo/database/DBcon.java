@@ -1,15 +1,12 @@
 package jiwoo.database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DBcon {
     public String driver = "org.mariadb.jdbc.Driver";
     public Connection con;
     public PreparedStatement pstmt;
+    public Statement stmt;
     public ResultSet rs;
 
     public DBcon() {

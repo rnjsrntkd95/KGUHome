@@ -1,14 +1,16 @@
 <%@ page contentType="text/html;charset=euc-kr" language="java" import="java.lang.String" %>
-<%@ page import="jiwoo.database.DBcon" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="jiwoo.reviewBoard.reviewBoard" %>
+
+<!DOCTYPE HTML>
 <!--
 Editorial by HTML5 UP
 html5up.net | @ajlkn
 Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-
+<html>
 <head>
-    <title>글 작성 페이지</title>
+    <title>Elements - Editorial by HTML5 UP</title>
     <meta charset="euc-kr"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <!--[if lte IE 8]>
@@ -42,64 +44,42 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
             <!-- Content -->
             <section>
-                <!-- Elements -->
-                <h2 id="elements">후기 게시판</h2>
-                <div class="row 200%">
-                    <div class="6u 12u$(medium)">
+                <header class="main">
+                    <h1>review 게시판 조회</h1>
+                </header>
 
-                        <h3>글 작성</h3>
+				<!-- Table -->
+				<h3>글 목록</h3>
+				<%
+					ArrayList<String> list = new ArrayList<String>();
+					reviewBoard rb = new reviewBoard();
 
-                        <form method="get" action="">
-                            <div class="row uniform">
-                                <div class="6u 12u$(xsmall)">
-                                    <input type="text" name="title" id="title" value="" placeholder="Title"/>
-                                </div>
-
-                                <!-- Break -->
-                                <div class="12u$">
-                                    <textarea name="content" id="content" placeholder="Content area"
-                                              rows="6"></textarea>
-                                </div>
-                                <!-- Break -->
-                                <div class="12u$">
-                                    <ul class="actions">
-                                        <li><input type="submit" value="작성완료" class="special"
-                                                   onclick="location.href='roomCreate.jsp'"/></li>
-                                        <li><input type="reset" value="초기화"/></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </form>
-
-                        <%
-                            String title = null;
-                            String content = null;
-                            request.setCharacterEncoding("euc-kr");
-                            if (request.getParameter("title") != null && request.getParameter("content") != null) {
-                                title = request.getParameter("title");
-                                content = request.getParameter("content");
-                                if (content.length() == 0) {
-                        %>
-                        <script language="javascript">
-                            alert("내용이 없습니다");
-                        </script>
-                        <%
-                        } else {
-                            reviewBoard rb = new reviewBoard();
-                            rb.insertReview(title, content);
-                        %>
-                        <script language="javascript">
-                            alert("작성 완료");
-                            window.location.href = 'http://localhost:8080';
-                        </script>
-                        <%
-                                }
-                            }
-                        %>
-
-
-                    </div>
-                </div>
+					list=rb.selectReview();
+				%>
+				<div class="table-wrapper">
+					<table>
+						<thead>
+						<tr>
+							<th>id</th>
+							<th>title</th>
+							<th>date</th>
+                            <th>time</th>
+                            <th>views</th>
+                        </tr>
+						</thead>
+						<tbody>
+						<%for(int i=0;i<list.size()-6;i+=7){%>
+						<tr>
+							<td><%=list.get(i)%></td>
+							<td><a href="reviewRead.jsp?id=<%=list.get(i)%>"><%=list.get(i+1)%></a></td>
+							<td><%=list.get(i+3)%></td>
+                            <td><%=list.get(i+4)%></td>
+                            <td><%=list.get(i+5)%></td>
+                        </tr>
+						<%}%>
+						</tbody>
+					</table>
+				</div>
 
             </section>
 
