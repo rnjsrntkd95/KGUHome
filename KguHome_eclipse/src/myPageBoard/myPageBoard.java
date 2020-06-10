@@ -13,6 +13,7 @@ public class myPageBoard {
 	public ResultSet res;    
     private String nickname = "??";
     private String userId = "??";
+    private String pwd = "??";
     private String grade = "??";
     private URL profileImage = null;
     
@@ -90,5 +91,22 @@ public class myPageBoard {
 	        return profileImage;
 	    }
     
+		public String getPWD(String uid) {
+
+			String query = "select pwd from user where uid=" + uid;
+
+			try {
+				stmt = db.con.createStatement();
+				res = stmt.executeQuery(query);
+
+				pwd = db.rs.getString("pwd");
+
+			} catch (SQLException throwables) {
+				throwables.printStackTrace();
+			}
+
+			return pwd;
+        
+    }
 
 }

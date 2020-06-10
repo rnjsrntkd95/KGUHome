@@ -2,6 +2,7 @@
 <%@ page import="jiwoo.database.DBcon" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="jiwoo.database.reviewBoard.reviewBoard" %>
+<%@ page import="jiwoo.database.roommateBoard.roommateBoard" %>
 <!--
 Editorial by HTML5 UP
 html5up.net | @ajlkn

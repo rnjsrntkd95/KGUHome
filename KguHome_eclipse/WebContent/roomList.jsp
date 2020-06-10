@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=utf-8" language="java" import="java.lang.String" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="jiwoo.database.reviewBoard.reviewBoard" %>
-<%@ page import="jiwoo.database.reviewBoard.infoBoard" %>
+<%@ page import="jiwoo.database.infoBoard.infoBoard" %>
 <%@ page import="jiwoo.database.roommateBoard.roommateBoard" %>
 <%@ page import="jiwoo.database.roomBoard.roomBoard" %>
 
