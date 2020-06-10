@@ -1,6 +1,4 @@
-<%@ page contentType="text/html;charset=euc-kr" language="java" import="java.lang.String" %>
-<%@ page import="database.DBcon" %>
-<%@ page import="reviewBoard.reviewBoard" %>
+<%@ page contentType="text/html;charset=utf-8" language="java" import="java.lang.String" %>
 <!--
 Editorial by HTML5 UP
 html5up.net | @ajlkn
@@ -8,8 +6,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 -->
 
 <head>
-    <title>±€ ¿€º∫ ∆‰¿Ã¡ˆ</title>
-    <meta charset="euc-kr"/>
+    <title>Í∏Ä ÏûëÏÑ± ÌéòÏù¥ÏßÄ</title>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <!--[if lte IE 8]>
     <script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -43,13 +41,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <!-- Content -->
             <section>
                 <!-- Elements -->
-                <h2 id="elements">»ƒ±‚ ∞‘Ω√∆«</h2>
+                <h2 id="elements">ÌõÑÍ∏∞ Í≤åÏãúÌåê</h2>
                 <div class="row 200%">
                     <div class="6u 12u$(medium)">
 
-                        <h3>±€ ¿€º∫</h3>
+                        <h3>Í∏Ä ÏûëÏÑ±</h3>
 
-                        <form method="get" action="">
+                        <form method="post" action="reviewInsert">
                             <div class="row uniform">
                                 <div class="6u 12u$(xsmall)">
                                     <input type="text" name="title" id="title" value="" placeholder="Title"/>
@@ -63,40 +61,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                                 <!-- Break -->
                                 <div class="12u$">
                                     <ul class="actions">
-                                        <li><input type="submit" value="¿€º∫øœ∑·" class="special"
-                                                   onclick="location.href='roomCreate.jsp'"/></li>
-                                        <li><input type="reset" value="√ ±‚»≠"/></li>
+                                        <li><input type="submit" value="ÏûëÏÑ±ÏôÑÎ£å" class="special"
+                                                   onclick="location.href='index.html'"/></li>
+                                        <li><input type="reset" value="Ï¥àÍ∏∞Ìôî"/></li>
                                     </ul>
                                 </div>
                             </div>
                         </form>
-
-                        <%
-                            String title = null;
-                            String content = null;
-                            request.setCharacterEncoding("euc-kr");
-                            if (request.getParameter("title") != null && request.getParameter("content") != null) {
-                                title = request.getParameter("title");
-                                content = request.getParameter("content");
-                                if (content.length() == 0) {
-                        %>
-                        <script language="javascript">
-                            alert("≥ªøÎ¿Ã æ¯Ω¿¥œ¥Ÿ");
-                        </script>
-                        <%
-                        } else {
-                            reviewBoard rb = new reviewBoard();
-                            rb.insertReview(title, content);
-                        %>
-                        <script language="javascript">
-                            alert("¿€º∫ øœ∑·");
-                            window.location.href = 'http://localhost:8080';
-                        </script>
-                        <%
-                                }
-                            }
-                        %>
-
 
                     </div>
                 </div>

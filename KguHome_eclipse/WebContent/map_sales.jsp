@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+	<%@ page import="java.util.*" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +13,8 @@
 </head>
 <body>
 	<p id="result"></p>
+
+	
 	<%
 		String data = (String)request.getAttribute("test");
 		out.println("ÀÚ·á´Â(forward)" + data);
@@ -20,6 +24,7 @@
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=291ae91548b72e5c96e2ad42f5772f46"></script>
 		
 	<script>
+		
 	
 		var container = document.getElementById('map');
 		var options = {

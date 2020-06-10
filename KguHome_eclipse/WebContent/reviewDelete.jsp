@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=euc-kr" language="java" import="java.lang.String" %>
-<%@ page import="database.DBcon" %>
-<%@ page import="reviewBoard.reviewBoard" %>
+<%@ page import="jiwoo.database.DBcon" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="jiwoo.database.reviewBoard.reviewBoard" %>
 <!--
 Editorial by HTML5 UP
 html5up.net | @ajlkn
@@ -10,7 +10,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 <head>
     <title>글 작성 페이지</title>
-    <meta charset="euc-kr"/>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <!--[if lte IE 8]>
     <script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -52,7 +52,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <%
                             reviewBoard rb = new reviewBoard();
 
-                            request.setCharacterEncoding("euc-kr");
+                            request.setCharacterEncoding("utf-8");
                             String id = request.getParameter("id");
                             if (id != null) {
                                 rb.deleteReview(id);

@@ -1,6 +1,6 @@
-<%@ page contentType="text/html;charset=euc-kr" language="java" import="java.lang.String" %>
+<%@ page contentType="text/html;charset=utf-8" language="java" import="java.lang.String" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="reviewBoard.reviewBoard" %>
+<%@ page import="jiwoo.database.reviewBoard.reviewBoard" %>
 
 <!DOCTYPE HTML>
 <!--
@@ -11,7 +11,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 <html>
 <head>
     <title>Elements - Editorial by HTML5 UP</title>
-    <meta charset="euc-kr"/>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <!--[if lte IE 8]>
     <script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -45,11 +45,11 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h1>review °Ô½ÃÆÇ Á¶È¸</h1>
+                    <h1>ë¦¬ë·° ê²Œì‹œíŒ ì¡°íšŒ</h1>
                 </header>
 
 				<!-- Table -->
-				<h3>±Û ¸ñ·Ï</h3>
+				<h3>ê¸€ ëª©ë¡</h3>
 				<%
 					ArrayList<String> list = new ArrayList<String>();
 					reviewBoard rb = new reviewBoard();
@@ -68,7 +68,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         </tr>
 						</thead>
 						<tbody>
-						<%for(int i=0;i<list.size()-6;i+=7){%>
+						<%for(int i=0;i<list.size();i+=7){%>
 						<tr>
 							<td><%=list.get(i)%></td>
 							<td><a href="reviewRead.jsp?id=<%=list.get(i)%>"><%=list.get(i+1)%></a></td>
@@ -80,6 +80,11 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						</tbody>
 					</table>
 				</div>
+
+
+                <ul class="actions">
+                    <li style="float: right"><a href="reviewCreate.jsp" class="button special">ì‘ì„±í•˜ê¸°</a></li>
+                </ul>
 
             </section>
 

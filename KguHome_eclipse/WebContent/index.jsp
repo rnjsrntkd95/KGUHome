@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ page import="java.io.PrintWriter"%>
 
 <%@ page import="user.UserDAO"%>
+<%@ page import="java.util.*" %>
 
 <!DOCTYPE HTML>
 <!--
@@ -17,9 +18,10 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <!--[if lte IE 8]><script src=./resources/"assets/js/ie/html5shiv.js"></script><![endif]-->
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
 <link rel="stylesheet" href="./resources/assets/css/main.css" />
 <link rel="stylesheet" href="./assets/css/all_sale_map.css" />
-
 <!--[if lte IE 9]><link rel="stylesheet" href="./resources/assets/css/ie9.css" /><![endif]-->
 <!--[if lte IE 8]><link rel="stylesheet" href="./resources/assets/css/ie8.css" /><![endif]-->
 
@@ -43,8 +45,13 @@
 	justify-content: space-between;
 }
 
-.famous-title > h3 {
+.famous-title>h3 {
 	line-height: 41px;
+}
+
+#menu ul a {
+	font-size: 1.0em;
+	margin-right: 10px;
 }
 </style>
 
@@ -86,12 +93,6 @@
 		<div id="main">
 			<div class="inner">
 
-				<!-- Header -->
-				<!-- 				<header id="header">
-					<a href="index.jsp" class="logo"><strong>ÀÚÃë»ıÀ» À§ÇÑ Ä¿¹Â´ÏÆ¼</strong> by
-						KGU Home</a>
-				
-				</header> -->
 
 				<!-- Banner -->
 				<section id="banner">
@@ -109,12 +110,12 @@
 				<!-- Section -->
 				<section>
 					<header class="major">
-						<h2>ÀÎ±â±Û</h2>
+						<h2>ì¸ê¸°ê¸€</h2>
 					</header>
 					<div class="posts">
 						<article>
 							<div class="famous-title">
-								<h3>¹æ°Å·¡ °Ô½ÃÆÇ</h3>
+								<h3>ê±°ë˜ ê²Œì‹œíŒ</h3>
 								<ul class="actions">
 									<li><a href="#" class="button">More</a></li>
 								</ul>
@@ -122,33 +123,32 @@
 							<p>Aenean ornare velit lacus, ac varius enim lorem
 								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
 								nulla amet lorem feugiat tempus aliquam.</p>
-				
+
 						</article>
 						<article>
-							<h3>¸®ºä °Ô½ÃÆÇ</h3>
+							<h3>ë¦¬ë·° ê²Œì‹œíŒ</h3>
 							<p>Aenean ornare velit lacus, ac varius enim lorem
 								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
 								nulla amet lorem feugiat tempus aliquam.</p>
-					
+
 						</article>
 						<article>
-							<h3>Á¤º¸ °Ô½ÃÆÇ</h3>
+							<h3>ì •ë³´ ê²Œì‹œíŒ</h3>
 							<p>Aenean ornare velit lacus, ac varius enim lorem
 								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
 								nulla amet lorem feugiat tempus aliquam.</p>
-						
+
 						</article>
 						<article>
-							<h3>·ë¸ŞÀÌÆ® ±¸ÀÎ</h3>
+							<h3>ë£¸ë©”ì´íŠ¸ êµ¬ì¸</h3>
 							<p>Aenean ornare velit lacus, ac varius enim lorem
 								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
 								nulla amet lorem feugiat tempus aliquam.</p>
-				
+
 						</article>
 
 					</div>
 				</section>
-
 			</div>
 		</div>
 
@@ -157,21 +157,21 @@
 			<div class="inner">
 				<!-- Menu -->
 				<nav id="menu">
-					<ul class="icons">
+					<ul class="icons login">
 						<%
 							if (user_id == null) {
 						%>
 						<li><a href="join.jsp" class="icon fa-users"><span
-								class="label">È¸¿ø °¡ÀÔ</span></a></li>
+								class="label">íšŒì› ê°€ì…</span></a></li>
 						<li><a href="login.jsp" class="icon fa-user"><span
-								class="label">·Î±×ÀÎ</span></a></li>
+								class="label">ë¡œê·¸ì¸</span></a></li>
 						<%
 							} else {
 						%>
 						<li><a href="MyPage.jsp" class="icon fa-cog"><span
-								class="label">¸¶ÀÌÆäÀÌÁö</span></a></li>
+								class="label">ë§ˆì´ í˜ì´ì§€</span></a></li>
 						<li><a href="userLogout.jsp" class="icon fa-times"><span
-								class="label">·Î±×¾Æ¿ô</span></a></li>
+								class="label">ë¡œê·¸ì•„ì›ƒ</span></a></li>
 						<%
 							}
 						%>
@@ -180,12 +180,13 @@
 					<header class="major">
 						<h2>Menu</h2>
 					</header>
-					<ul>
-						<li><span class="opener">Content View</span>
-							<ul>
-								<li><a href="reviewList.jsp">Show Review</a></li>
-							</ul></li>
-						<li><span class="opener">Content CREATE</span>
+					<ul class="side-menu">
+						<li><a href="reviewList.jsp">ê±°ë˜ ê²Œì‹œíŒ</a></li>
+						<li><a href="">ë¦¬ë·° ê²Œì‹œíŒ</a></li>
+						<li><a href="">ì •ë³´ ê²Œì‹œíŒ</a></li>
+						<li><a href="">ë£¸ë©”ì´íŠ¸ êµ¬ì¸ ê²Œì‹œíŒ</a></li>
+
+						<!-- 						<li><span class="opener">Content CREATE</span>
 							<ul>
 								<li><a href="reviewCreate.jsp">Create Review</a></li>
 								<li><a href="roomCreate.jsp">Create Room info</a></li>
@@ -197,11 +198,11 @@
 							</ul></li>
 						<li><span class="opener">Messenger</span>
 							<ul>
-								<li><a href="messageSend.jsp">ÂÊÁö º¸³»±â</a></li>
-								<li><a href="receivedMessages.jsp">¹ŞÀº ÂÊÁö</a></li>
-								<li><a href="sentMessages.jsp">º¸³½ ÂÊÁö</a></li>
+								<li><a href="messageSend.jsp">ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a></li>
+								<li><a href="receivedMessages.jsp">ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a></li>
+								<li><a href="sentMessages.jsp">ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a></li>
 
-							</ul></li>
+							</ul></li> -->
 
 						<!-- 		
 
@@ -262,7 +263,9 @@
 			</div>
 		</div>
 
+
 	</div>
+
 
 	<!-- Scripts -->
 	<script src="./resources/assets/js/jquery.min.js"></script>
@@ -279,13 +282,13 @@
 	
 		var container = document.getElementById('map');
 		var options = {
-			center: new kakao.maps.LatLng(37.2987948, 127.0374455),
-			level : 5
+			center: new kakao.maps.LatLng(37.297092027, 127.0370499),
+			level : 4
 		};
 
 		var map = new kakao.maps.Map(container, options);
 
-		// ÄÁÆ®·Ñ ¹Ù¸¦ Áöµµ À§¿¡ Ç¥½ÃÇÕ´Ï´Ù.
+		// ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
 		var mapTypeControl = new kakao.maps.MapTypeControl();
 		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TORIGHT);
 		var zoomControl = new kakao.maps.ZoomControl();
@@ -294,22 +297,22 @@
 		var openedCustomOverlay = new kakao.maps.CustomOverlay();
 		var openedSaleMarker = null;
 		
-		// Á¤¹® ÈÄ¹® ¸¶Ä¿ Ç¥½Ã
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¹ï¿½ ï¿½ï¿½Ä¿ Ç¥ï¿½ï¿½
 		var positions = [
 			{
-				title: 'Á¤¹®',
+				title: 'ì •ë¬¸ ì…êµ¬',
 				latlng: new kakao.maps.LatLng(37.3016229, 127.0337445)
 			},
 			{
-				title: 'Á¤¹® »ê±æ',
+				title: 'ì •ë¬¸ ì‚°ê¸¸',
 				latlng: new kakao.maps.LatLng(37.2973027, 127.0328685)
 			},
 			{
-				title: 'ÈÄ¹®',
+				title: 'í›„ë¬¸ ì…êµ¬',
 				latlng: new kakao.maps.LatLng(37.2975997, 127.0412514)
 			},
 			{
-				title: 'ÈÄ¹® »û±æ',
+				title: 'ê±°ë¶ ìƒ›ê¸¸',
 				latlng: new kakao.maps.LatLng(37.3005728,  127.0420200)
 			}
 		]
@@ -326,12 +329,39 @@
 			});
 		} 
 		
-		// µî·ÏµÈ ¸Å¹°µéÀÇ ¸¶Ä¿ Ç¥½Ã
-		var sales = [
+		
+		// ï¿½ï¿½Ïµï¿½ ï¿½Å¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¿ Ç¥ï¿½ï¿½
+		var posts = [];
+			<%
+				ArrayList<String[]> posts = (ArrayList<String[]>) request.getAttribute("posts");
+				String test = (String) request.getAttribute("aa");
+				int count = 0;
+				%>
+				
+		var sales = []		
+ 		for (var i=0; i<<%=posts.size()%>;i++) {
+			<% 
+			String[] post = posts.get(count);
+			count++;
+			%>
+			var sale = {
+					title: "<%=post[0]%>",
+					deposit: "<%=post[1]%>",
+					rent: "<%=post[2]%>",
+<%-- 					image: "<%=post[3]%>",
+ --%>					latitude: Number("<%=post[4]%>"),
+					longitude: Number("<%=post[5]%>"),
+					created_at: "<%=post[6]%>"
+			};			
+			sales.push(sale);
+		}
+		console.log(sales);
+		
+	/* 	var sales = [
 			{	
 				latitude: 37.2968324,
 				longitude:  127.0311737,
-				title: "Ã¹¹øÂ° ÀÚÃë¹æ!!!!!!!!!!!!!!!!",
+				title: "Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½!!!!!!!!!!!!!!!!",
 				image: "",
 				deposit: 500,
 				rent: 30,
@@ -340,7 +370,7 @@
 			{
 				latitude: 37.2979503,
 				longitude:  127.0288282,
-				title: "µÎ¹øÂ° ÀÚÃë¹æ!",
+				title: "ï¿½Î¹ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½!",
 				image: "",
 				deposit: 300,
 				rent: 27,
@@ -349,13 +379,13 @@
  			{
 				latitude: 37.2953918,
 				longitude:  127.0267069,
-				title: "¼¼¹øÂ° ÀÚÃë¹æ!",
+				title: "ï¿½ï¿½ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½!",
 				image: "",
 				deposit: 500,
 				rent: 35,
 				created_at: '2020-06-03'
 			}, 
-		];
+		]; */
 		
 		
 		function closeSaleInfo(target) {
@@ -373,13 +403,12 @@
 				content += '    <a href="" target="_blank"><i class="fas fa-home"></i>'
 				content += '		<div class="title">'+sale.title+'</div></a>'
 				content += '		<i class="fas fa-times close-btn" onclick="closeSaleInfo(this)"></i>'
-			 	content += ' 		<button class="bookmark_btn" type="button" onclick="checkingBookmark(this)"><i class="far fa-star"></i></button>'; 
 
 				content += '    <div class="desc">';
 				content += '        <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">';
 				content += '        <div class="sale-info">';
-				content += '        <div class="price deposit">º¸Áõ±İ: '+sale.deposit+'</div>';
-				content += '        <div class="price rent">¿ù¼¼: '+sale.rent+'</div>';
+				content += '        <div class="price deposit">ë³´ì¦ê¸ˆ: '+sale.deposit+'</div>';
+				content += '        <div class="price rent">ì›”ì„¸: '+sale.rent+'</div>';
 				content += '        <div class="price create_at">'+sale.created_at+'</div>';
 				content += '    </div></div>';
 				content += '</div>';
@@ -399,17 +428,19 @@
 		
 		
  		for (sale of sales){
+ 			console.log(sale.latitude)
+ 			 			console.log(sale.longitude)
+
  			var imageSrc = 'image/sale_marker.png',
  			imageSize = new kakao.maps.Size(30, 30)
  			var saleMarkerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-			// ¸¶Ä¿ »ı¼º
 			const saleMarker = new kakao.maps.Marker({
 				map: map,
 				position: new kakao.maps.LatLng(sale.latitude, sale.longitude),
 				image: saleMarkerImage
 			});
 			
-			// ÀÎÆ÷À©µµ¿ì¸¦  Å¬¸¯ ÀÌº¥Æ® »ı¼º
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì¸¦  Å¬ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			kakao.maps.event.addListener(saleMarker, "click", makeOverListener(map, sale, saleMarker))
  		}
 
@@ -424,14 +455,14 @@
 		var registerMarker = new kakao.maps.Marker();
 		var myInfoWindow = new kakao.maps.InfoWindow();
 		
-		// Áñ°ÜÃ£±â ¸¶Å©
+		// ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ ï¿½ï¿½Å©
 		function checkingBookmark(target) {
 			if (target.childNodes[0].getAttribute('data-prefix') == 'far')
 				target.childNodes[0].setAttribute('data-prefix', 'fas')
 			else
 				target.childNodes[0].setAttribute('data-prefix', 'far')
 				
-			// Áñ°ÜÃ£±â request ¼Û½Å
+			// ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ request ï¿½Û½ï¿½
 /*			$.ajax({
                 type: "POST",
                 url: "",
@@ -447,20 +478,20 @@
 */
 		}
 
-		// Å¬¸¯ÇÑ ÁöÁ¡ ¸¶Ä¿ Ç¥½Ã À§µµ °æµµ Ç¥½Ã
+		// Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¿ Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµµ Ç¥ï¿½ï¿½
 		kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
-		    // Å¬¸¯ÇÑ À§µµ, °æµµ Á¤º¸¸¦ °¡Á®¿É´Ï´Ù 
+		    // Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½æµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½ 
 		    var latlng = mouseEvent.latLng;
 			registerMarker.setMap(null);
 			myInfoWindow.close();
 			
-			// ¸¶Ä¿ »ı¼º
+			// ï¿½ï¿½Ä¿ ï¿½ï¿½ï¿½ï¿½
 			registerMarker = new kakao.maps.Marker({
 				position: latlng,
 			});
 			registerMarker.setMap(map);
 			
-			// ÀÎÆ÷À©µµ¿ì¸¦ »ı¼ºÇÕ´Ï´Ù
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½
 			var iwContent = '<div style="padding:5px;">My Home!!</div>', 
 		    iwPosition = new kakao.maps.LatLng(latlng); 
 			myInfoWindow = new kakao.maps.InfoWindow({
@@ -472,20 +503,20 @@
 				    
 			
 			////
-		    var message = 'Å¬¸¯ÇÑ À§Ä¡ÀÇ À§µµ´Â ' + latlng.getLat() + ' ÀÌ°í, ';
-		    message += '°æµµ´Â ' + latlng.getLng() + ' ÀÔ´Ï´Ù';
+		    var message = 'Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ' + latlng.getLat() + ' ï¿½Ì°ï¿½, ';
+		    message += 'ï¿½æµµï¿½ï¿½ ' + latlng.getLng() + ' ï¿½Ô´Ï´ï¿½';
 		    
 		    var resultDiv = document.getElementById('result'); 
 		    resultDiv.innerHTML = message;
 		});
 		
-		// ÁÂÇ¥ Å¬¸¯ ½Ã ÁÂÇ¥°ª Ç¥½Ã ÀÌº¥Æ®
+		// ï¿½ï¿½Ç¥ Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½Ìºï¿½Æ®
 		kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
-		    // Å¬¸¯ÇÑ À§µµ, °æµµ Á¤º¸¸¦ °¡Á®¿É´Ï´Ù 
+		    // Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½æµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½ 
 		    var latlng = mouseEvent.latLng;
 		    
-		    var message = 'Å¬¸¯ÇÑ À§Ä¡ÀÇ À§µµ´Â ' + latlng.getLat() + ' ÀÌ°í, ';
-		    message += '°æµµ´Â ' + latlng.getLng() + ' ÀÔ´Ï´Ù';
+		    var message = 'Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ' + latlng.getLat() + ' ï¿½Ì°ï¿½, ';
+		    message += 'ï¿½æµµï¿½ï¿½ ' + latlng.getLng() + ' ï¿½Ô´Ï´ï¿½';
 		    
 		    var resultDiv = document.getElementById('result'); 
 		    resultDiv.innerHTML = message;

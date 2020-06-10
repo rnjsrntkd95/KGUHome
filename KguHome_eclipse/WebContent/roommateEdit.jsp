@@ -2,6 +2,7 @@
 <%@ page import="jiwoo.database.DBcon" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="jiwoo.database.reviewBoard.reviewBoard" %>
+<%@ page import="jiwoo.database.roommateBoard.roommateBoard" %>
 <!--
 Editorial by HTML5 UP
 html5up.net | @ajlkn
@@ -44,7 +45,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <!-- Content -->
             <section>
                 <!-- Elements -->
-                <h2 id="elements">후기 게시판</h2>
+                <h2 id="elements">룸메이트 게시판</h2>
                 <div class="row 200%">
                     <div class="6u 12u$(medium)">
 
@@ -52,14 +53,14 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <%
                             String title = null;
                             String body = null;
-                            reviewBoard rb = new reviewBoard();
+                            roommateBoard rb = new roommateBoard();
 
                             request.setCharacterEncoding("utf-8");
                             String id = request.getParameter("id");
                             int number=-1;
                             ArrayList<String> result = new ArrayList<String>();
                             if(id!=null) {
-                                result = rb.selectOneReview(id);
+                                result = rb.selectOneRoommate(id);
 
                                 title = result.get(1);
                                 body = result.get(2);
@@ -103,7 +104,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         </script>
                         <%
                         } else {
-                            rb.updateReview(inputTitle, inputContent, id);
+                            rb.updateRoommate(inputTitle, inputContent, id);
                         %>
                         <script language="javascript">
                             alert("수정 완료");

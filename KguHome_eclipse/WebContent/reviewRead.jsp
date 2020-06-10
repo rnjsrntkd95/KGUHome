@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=euc-kr" language="java" import="java.lang.String" %>
-<%@ page import="reviewBoard.reviewBoard" %>
+<%@ page contentType="text/html;charset=utf-8" language="java" import="java.lang.String" %>
+<%@ page import="jiwoo.database.reviewBoard.reviewBoard" %>
 <%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE HTML>
@@ -11,7 +11,7 @@
 <html>
 	<head>
 		<title>Elements - Editorial by HTML5 UP</title>
-		<meta charset="euc-kr" />
+		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -42,7 +42,7 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-										<h1>°Ô½Ã±Û Á¶È¸</h1>
+										<h1>ê²Œì‹œê¸€ ì¡°íšŒ</h1>
 									</header>
 
 									<!-- Content -->
@@ -50,7 +50,7 @@
 											<div class="6u 12u$(small)">
 												<%
 													reviewBoard rb = new reviewBoard();
-													request.setCharacterEncoding("euc-kr");
+													request.setCharacterEncoding("utf-8");
 													String id = request.getParameter("id");
 													rb.addViewCount(id);
 
@@ -64,8 +64,8 @@
 											</div>
 										</div>
 									<ul class="actions">
-										<li><a href="reviewEdit.jsp?id=<%=id%>" class="button special">¼öÁ¤ÇÏ±â</a></li>
-										<li><a href="reviewDelete.jsp?id=<%=id%>" class="button">»èÁ¦ÇÏ±â</a></li>
+										<li><a href="reviewEdit.jsp?id=<%=id%>" class="button special">ìˆ˜ì •í•˜ê¸°</a></li>
+										<li><a href="reviewDelete.jsp?id=<%=id%>" class="button">ì‚­ì œí•˜ê¸°</a></li>
 									</ul>
 									<hr class="major" />
 

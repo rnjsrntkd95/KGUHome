@@ -1,7 +1,4 @@
 <%@ page contentType="text/html;charset=utf-8" language="java" import="java.lang.String" %>
-<%@ page import="jiwoo.database.DBcon" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="jiwoo.database.reviewBoard.reviewBoard" %>
 <!--
 Editorial by HTML5 UP
 html5up.net | @ajlkn
@@ -44,76 +41,33 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <!-- Content -->
             <section>
                 <!-- Elements -->
-                <h2 id="elements">후기 게시판</h2>
+                <h2 id="elements">룸메이트 게시판</h2>
                 <div class="row 200%">
                     <div class="6u 12u$(medium)">
 
-                        <h3>글 수정</h3>
-                        <%
-                            String title = null;
-                            String body = null;
-                            reviewBoard rb = new reviewBoard();
+                        <h3>글 작성</h3>
 
-                            request.setCharacterEncoding("utf-8");
-                            String id = request.getParameter("id");
-                            int number=-1;
-                            ArrayList<String> result = new ArrayList<String>();
-                            if(id!=null) {
-                                result = rb.selectOneReview(id);
-
-                                title = result.get(1);
-                                body = result.get(2);
-                            }
-
-                        %>
-
-                        <form method="get" action="">
+                        <form method="post" action="roommateInsert">
                             <div class="row uniform">
                                 <div class="6u 12u$(xsmall)">
-                                    <input type="text" name="title" id="title" value="<%=title%>" placeholder="<%=title%>"/>
+                                    <input type="text" name="title" id="title" value="" placeholder="Title"/>
                                 </div>
 
                                 <!-- Break -->
                                 <div class="12u$">
-                                    <textarea name="content" id="content" placeholder="<%=body%>"
-                                              rows="6"><%=body%></textarea>
+                                    <textarea name="content" id="content" placeholder="Content area"
+                                              rows="6"></textarea>
                                 </div>
-                                <input type="hidden" id="id" name="id" value="<%=id%>">
                                 <!-- Break -->
                                 <div class="12u$">
                                     <ul class="actions">
-                                        <li><input type="submit" value="작성완료" class="special"/></li>
+                                        <li><input type="submit" value="작성완료" class="special"
+                                                   onclick="location.href='index.html'"/></li>
                                         <li><input type="reset" value="초기화"/></li>
                                     </ul>
                                 </div>
                             </div>
                         </form>
-
-                        <%
-                            String inputTitle;
-                            String inputContent;
-                            if (request.getParameter("title") != null && request.getParameter("content") != null) {
-                                inputTitle = request.getParameter("title");
-                                inputContent = request.getParameter("content");
-                                id=request.getParameter("id");
-                                if (inputContent.length() == 0) {
-                        %>
-                        <script language="javascript">
-                            alert("내용이 없습니다");
-                        </script>
-                        <%
-                        } else {
-                            rb.updateReview(inputTitle, inputContent, id);
-                        %>
-                        <script language="javascript">
-                            alert("수정 완료");
-                            window.location.href = 'http://localhost:8080';
-                        </script>
-                        <%
-                                }
-                            }
-                        %>
-
 
                     </div>
                 </div>

@@ -1,24 +1,23 @@
 <%@ page contentType="text/html;charset=utf-8" language="java" import="java.lang.String" %>
-<%@ page import="jiwoo.database.DBcon" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="jiwoo.database.reviewBoard.reviewBoard" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="jiwoo.database.reviewBoard.infoBoard" %>
+
+<!DOCTYPE HTML>
 <!--
 Editorial by HTML5 UP
 html5up.net | @ajlkn
 Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-
+<html>
 <head>
-    <title>글 작성 페이지</title>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <!--[if lte IE 8]>
-    <script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-    <link rel="stylesheet" href="assets/css/main.css"/>
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="assets/css/ie9.css"/><![endif]-->
-    <!--[if lte IE 8]>
-    <link rel="stylesheet" href="assets/css/ie8.css"/><![endif]-->
+    <title>Elements - Editorial by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 </head>
 <body>
 
@@ -43,80 +42,33 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
             <!-- Content -->
             <section>
-                <!-- Elements -->
-                <h2 id="elements">후기 게시판</h2>
-                <div class="row 200%">
-                    <div class="6u 12u$(medium)">
+                <header class="main">
+                    <h1>게시글 조회</h1>
+                </header>
 
-                        <h3>글 수정</h3>
+                <!-- Content -->
+                <div class="row">
+                    <div class="6u 12u$(small)">
                         <%
-                            String title = null;
-                            String body = null;
-                            reviewBoard rb = new reviewBoard();
-
+                            infoBoard rb = new infoBoard();
                             request.setCharacterEncoding("utf-8");
                             String id = request.getParameter("id");
-                            int number=-1;
+                            rb.addViewCount(id);
+
                             ArrayList<String> result = new ArrayList<String>();
-                            if(id!=null) {
-                                result = rb.selectOneReview(id);
-
-                                title = result.get(1);
-                                body = result.get(2);
-                            }
-
+                            result=rb.selectOneInfo(id);
+                            String title=result.get(1);
+                            String body=result.get(2);
                         %>
-
-                        <form method="get" action="">
-                            <div class="row uniform">
-                                <div class="6u 12u$(xsmall)">
-                                    <input type="text" name="title" id="title" value="<%=title%>" placeholder="<%=title%>"/>
-                                </div>
-
-                                <!-- Break -->
-                                <div class="12u$">
-                                    <textarea name="content" id="content" placeholder="<%=body%>"
-                                              rows="6"><%=body%></textarea>
-                                </div>
-                                <input type="hidden" id="id" name="id" value="<%=id%>">
-                                <!-- Break -->
-                                <div class="12u$">
-                                    <ul class="actions">
-                                        <li><input type="submit" value="작성완료" class="special"/></li>
-                                        <li><input type="reset" value="초기화"/></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </form>
-
-                        <%
-                            String inputTitle;
-                            String inputContent;
-                            if (request.getParameter("title") != null && request.getParameter("content") != null) {
-                                inputTitle = request.getParameter("title");
-                                inputContent = request.getParameter("content");
-                                id=request.getParameter("id");
-                                if (inputContent.length() == 0) {
-                        %>
-                        <script language="javascript">
-                            alert("내용이 없습니다");
-                        </script>
-                        <%
-                        } else {
-                            rb.updateReview(inputTitle, inputContent, id);
-                        %>
-                        <script language="javascript">
-                            alert("수정 완료");
-                            window.location.href = 'http://localhost:8080';
-                        </script>
-                        <%
-                                }
-                            }
-                        %>
-
-
+                        <h3><%=title%></h3>
+                        <p><%=body%></p>
                     </div>
                 </div>
+                <ul class="actions">
+                    <li><a href="infoEdit.jsp?id=<%=id%>" class="button special">수정하기</a></li>
+                    <li><a href="infoDelete.jsp?id=<%=id%>" class="button">삭제하기</a></li>
+                </ul>
+                <hr class="major" />
 
             </section>
 
@@ -130,7 +82,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <!-- Search -->
             <section id="search" class="alt">
                 <form method="post" action="#">
-                    <input type="text" name="query" id="query" placeholder="Search"/>
+                    <input type="text" name="query" id="query" placeholder="Search" />
                 </form>
             </section>
 
@@ -176,15 +128,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 </header>
                 <div class="mini-posts">
                     <article>
-                        <a href="#" class="image"><img src="images/pic07.jpg" alt=""/></a>
+                        <a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
                         <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
                     </article>
                     <article>
-                        <a href="#" class="image"><img src="images/pic08.jpg" alt=""/></a>
+                        <a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
                         <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
                     </article>
                     <article>
-                        <a href="#" class="image"><img src="images/pic09.jpg" alt=""/></a>
+                        <a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
                         <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
                     </article>
                 </div>
@@ -198,22 +150,18 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 <header class="major">
                     <h2>Get in touch</h2>
                 </header>
-                <p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem
-                    ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus
-                    aliquam.</p>
+                <p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
                 <ul class="contact">
                     <li class="fa-envelope-o"><a href="#">information@untitled.tld</a></li>
                     <li class="fa-phone">(000) 000-0000</li>
-                    <li class="fa-home">1234 Somewhere Road #8254<br/>
-                        Nashville, TN 00000-0000
-                    </li>
+                    <li class="fa-home">1234 Somewhere Road #8254<br />
+                        Nashville, TN 00000-0000</li>
                 </ul>
             </section>
 
             <!-- Footer -->
             <footer id="footer">
-                <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>.
-                    Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+                <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
             </footer>
 
         </div>
@@ -225,8 +173,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/skel.min.js"></script>
 <script src="assets/js/util.js"></script>
-<!--[if lte IE 8]>
-<script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 <script src="assets/js/main.js"></script>
 
 </body>

@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +21,7 @@ import database.DBcon;
 /**
  * Servlet implementation class map_sales
  */
-@WebServlet("/map_sales")
+@WebServlet("/index")
 public class map_sales extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,20 +37,34 @@ public class map_sales extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Connection conn = null;
 		Statement stmt;
 		ResultSet res;
+		
+		ArrayList<String[]> posts = new ArrayList<String[]>();
 		try {
-//			Class.forName("com.mysql.jdbc.Driver");
-//	
-//			String sql = String.format("SELECT * FROM LOCATION");
-//			
-//			stmt = conn.createStatement();
-//			res = stmt.executeQuery(sql);
-//			
-//			while(res.next()) {
-//				System.out.println(res.getString("latitude"));
-//			}
+			DBcon db = new DBcon();
+			
+
+			String sql = String.format("SELECT * FROM ROOMBOARD");
+			
+			stmt = db.con.createStatement();
+			res = stmt.executeQuery(sql);
+			
+			while(res.next()) {
+				String[] info = new String[7];
+				
+				info[0] = res.getString("title");
+				info[1] = res.getString("deposit");
+				info[2] = res.getString("rent");
+//				info[3] = res.getString("image");
+				info[4] = res.getString("latitude");
+				info[5] = res.getString("longitude");
+				info[6] = res.getString("date");
+				posts.add(info);
+			}
+			String[] a = posts.get(0);
+			
+			System.out.println(a[0]);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -56,8 +72,8 @@ public class map_sales extends HttpServlet {
 		}
 
 		
-		request.setAttribute("test", "11111");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("map_sales.jsp");
+		request.setAttribute("posts", posts);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 	}
 

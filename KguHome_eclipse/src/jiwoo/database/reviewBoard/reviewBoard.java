@@ -1,26 +1,19 @@
-package reviewBoard;
+package jiwoo.database.reviewBoard;
 
-import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
-import database.DBcon;
+import jiwoo.database.DBcon;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 public class reviewBoard {
     public DBcon db;
-	Statement stmt;
-	ResultSet res;
-    
     public reviewBoard(){
         db = new DBcon();
     }
 
     public void insertReview(String title, String content){
         String sql = "Insert into reviewboard (title,content,views,uid) values(?,?,?,?)";
+        System.out.println("title : "+title);
 
         try{
             db.pstmt = db.con.prepareStatement(sql);
@@ -28,6 +21,8 @@ public class reviewBoard {
             db.pstmt.setString(2, content);
             db.pstmt.setString(3, "0");
             db.pstmt.setString(4, "1");
+
+
 
             db.pstmt.executeUpdate();
 
@@ -37,21 +32,24 @@ public class reviewBoard {
     }
     public ArrayList<String> selectReview(){
         System.out.println("Select * Review");
-        String sql = "SELECT * FROM reviewboard ORDER BY date, time ASC" ;
+        String sql = "SELECT * FROM reviewboard ORDER BY date, time DESC" ;
 
         ArrayList<String> result = new ArrayList<String>();
         try{
-            stmt = db.con.createStatement();
-            res = stmt.executeQuery(sql);
+            db.stmt = db.con.createStatement();
+            db.rs = db.stmt.executeQuery(sql);
 
-            while(res.next()){
-                result.add(res.getString("id"));
-                result.add(res.getString("title"));
-                result.add(res.getString("content"));
-                result.add(res.getString("date"));
-                result.add(res.getString("time"));
-                result.add(res.getString("views"));
-                result.add(res.getString("uid"));
+            while(db.rs.next()){
+                result.add(db.rs.getString("id"));
+                result.add(db.rs.getString("title"));
+                result.add(db.rs.getString("content"));
+                result.add(db.rs.getString("date"));
+                result.add(db.rs.getString("time"));
+                result.add(db.rs.getString("views"));
+                result.add(db.rs.getString("uid"));
+                result.add(db.rs.getString("latitude"));
+                result.add(db.rs.getString("longitude"));
+
             }
 
         } catch (SQLException throwables) {
@@ -68,8 +66,8 @@ public class reviewBoard {
 
         ArrayList<String> result = new ArrayList<String>();
         try{
-            stmt = db.con.createStatement();
-            res = stmt.executeQuery(sql);
+            db.stmt = db.con.createStatement();
+            db.rs = db.stmt.executeQuery(sql);
 
             while(db.rs.next()){
                 result.add(db.rs.getString("id"));
@@ -79,6 +77,9 @@ public class reviewBoard {
                 result.add(db.rs.getString("time"));
                 result.add(db.rs.getString("views"));
                 result.add(db.rs.getString("uid"));
+                result.add(db.rs.getString("latitude"));
+                result.add(db.rs.getString("longitude"));
+
             }
 
         } catch (SQLException throwables) {
@@ -97,6 +98,7 @@ public class reviewBoard {
             db.pstmt = db.con.prepareStatement(sql);
             db.pstmt.setString(1, title);
             db.pstmt.setString(2, content);
+
             db.pstmt.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -109,8 +111,8 @@ public class reviewBoard {
 
         String result="";
         try{
-            stmt = db.con.createStatement();
-            res = stmt.executeQuery(sql);
+            db.stmt = db.con.createStatement();
+            db.rs = db.stmt.executeQuery(sql);
 
             while(db.rs.next()){
                 result=db.rs.getString("views");

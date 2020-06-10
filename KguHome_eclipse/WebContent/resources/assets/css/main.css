@@ -2673,6 +2673,7 @@
 
 					ul.icons li .icon:before {
 						font-size: 1.25em;
+						padding-right: 4px;
 					}
 
 		ul.contact {
@@ -3602,6 +3603,7 @@
 			padding: 2.22222em 2.22222em 2.44444em 2.22222em ;
 			position: relative;
 			width: 26em;
+			
 		}
 
 			#sidebar > .inner > * {
@@ -3984,7 +3986,6 @@
 			border-bottom: 0;
 			color: inherit;
 			cursor: pointer;
-			display: block;
 			font-size: 0.9em;
 			padding: 0.625em 0;
 		}

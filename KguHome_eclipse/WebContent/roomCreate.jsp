@@ -1,7 +1,4 @@
-<%@ page contentType="text/html;charset=euc-kr" language="java" import="java.lang.String" %>
-<%@ page import="database.DBcon" %>
-<%@ page import="reviewBoard.reviewBoard" %>
-<%@ page import="roomBoard.roomBoard" %>
+<%@ page contentType="text/html;charset=utf-8" language="java" import="java.lang.String" %>
 <!--
 Editorial by HTML5 UP
 html5up.net | @ajlkn
@@ -9,8 +6,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 -->
 
 <head>
-    <title>±€ ¿€º∫ ∆‰¿Ã¡ˆ</title>
-
+    <title>Í∏Ä ÏûëÏÑ± ÌéòÏù¥ÏßÄ</title>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <!--[if lte IE 8]>
     <script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -44,16 +41,22 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <!-- Content -->
             <section>
                 <!-- Elements -->
-                <h2 id="elements">πÊ ∞≈∑° ∞‘Ω√∆«</h2>
+                <h2 id="elements">Î∞© Í≤åÏãúÌåê</h2>
                 <div class="row 200%">
                     <div class="6u 12u$(medium)">
 
-                        <h3>±€ ¿€º∫</h3>
+                        <h3>Í∏Ä ÏûëÏÑ±</h3>
 
-                        <form method="post" action="">
+                        <form method="post" action="roomInsert">
                             <div class="row uniform">
-                                <div class="6u 12u$(xsmall)">
+                                <div class="12u 12u$(xsmall)">
                                     <input type="text" name="title" id="title" value="" placeholder="Title"/>
+                                </div>
+                                <div class="6u 12u$(xsmall)">
+                                    <input type="text" name="deposit" id="deposit" value="" placeholder="Î≥¥Ï¶ùÍ∏à"/>
+                                </div>
+                                <div class="6u 12u$(xsmall)">
+                                    <input type="text" name="rent" id="rent" value="" placeholder="ÏõîÏÑ∏"/>
                                 </div>
 
                                 <!-- Break -->
@@ -64,37 +67,18 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                                 <!-- Break -->
                                 <div class="12u$">
                                     <ul class="actions">
-                                        <li><input type="submit" value="¿€º∫øœ∑·" class="special"/></li>
-                                        <li><input type="reset" value="√ ±‚»≠"/></li>
+                                        <li><input type="submit" value="ÏûëÏÑ±ÏôÑÎ£å" class="special"
+                                                   onclick="location.href='index.html'"/></li>
+                                        <li><input type="reset" value="Ï¥àÍ∏∞Ìôî"/></li>
                                     </ul>
                                 </div>
+                                <input type="hidden" name="latitude" id="latitude" value="123"/>
+                                <input type="hidden" name="longitude" id="longitude" value="123"/>
+                                <input type="hidden" name="uid" id="uid" value="1"/>
+
+
                             </div>
                         </form>
-
-                        <%
-                            String title = null;
-                            String content = null;
-                            if (request.getParameter("title") != null && request.getParameter("content") != null) {
-                                title = request.getParameter("title");
-                                content = request.getParameter("content");
-                                if (content.length() == 0) {
-                        %>
-                        <script language="javascript">
-                            alert("≥ªøÎ¿Ã æ¯Ω¿¥œ¥Ÿ");
-                        </script>
-                        <%
-                        } else {
-                            roomBoard rb = new roomBoard();
-                            rb.insertReview(title, content);
-                        %>
-                        <script language="javascript">
-                            alert("¿€º∫ øœ∑·");
-                            window.location.href = 'http://localhost:8080';
-                        </script>
-                        <%
-                                }
-                            }
-                        %>
 
                     </div>
                 </div>

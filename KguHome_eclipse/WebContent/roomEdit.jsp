@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=utf-8" language="java" import="java.lang.String" %>
-<%@ page import="jiwoo.database.DBcon" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="jiwoo.database.reviewBoard.reviewBoard" %>
+<%@ page import="jiwoo.database.roomBoard.roomBoard" %>
+
 <!--
 Editorial by HTML5 UP
 html5up.net | @ajlkn
@@ -44,7 +44,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <!-- Content -->
             <section>
                 <!-- Elements -->
-                <h2 id="elements">후기 게시판</h2>
+                <h2 id="elements">방 게시판</h2>
                 <div class="row 200%">
                     <div class="6u 12u$(medium)">
 
@@ -52,25 +52,40 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <%
                             String title = null;
                             String body = null;
-                            reviewBoard rb = new reviewBoard();
+                            String deposit = null;
+                            String rent = null;
+
+                            roomBoard rb = new roomBoard();
 
                             request.setCharacterEncoding("utf-8");
                             String id = request.getParameter("id");
-                            int number=-1;
+                            int number = -1;
                             ArrayList<String> result = new ArrayList<String>();
-                            if(id!=null) {
-                                result = rb.selectOneReview(id);
+                            if (id != null) {
+                                result = rb.selectOneRoom(id);
 
                                 title = result.get(1);
                                 body = result.get(2);
+                                deposit = result.get(9);
+                                rent = result.get(10);
+
                             }
-
                         %>
-
                         <form method="get" action="">
                             <div class="row uniform">
+                                <div class="12u 12u$(xsmall)">
+                                    <input type="text" name="title" id="title" value="<%=title%>"
+                                           placeholder="<%=title%>"/>
+                                </div>
+
                                 <div class="6u 12u$(xsmall)">
-                                    <input type="text" name="title" id="title" value="<%=title%>" placeholder="<%=title%>"/>
+                                    <input type="text" name="deposit" id="deposit" value="<%=deposit%>"
+                                           placeholder="<%=deposit%>"/>
+                                </div>
+
+                                <div class="6u 12u$(xsmall)">
+                                    <input type="text" name="rent" id="rent" value="<%=rent%>"
+                                           placeholder="<%=rent%>"/>
                                 </div>
 
                                 <!-- Break -->
@@ -92,10 +107,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <%
                             String inputTitle;
                             String inputContent;
+                            String inputDeposit;
+                            String inputRent;
                             if (request.getParameter("title") != null && request.getParameter("content") != null) {
                                 inputTitle = request.getParameter("title");
                                 inputContent = request.getParameter("content");
-                                id=request.getParameter("id");
+                                inputDeposit = request.getParameter("deposit");
+                                inputRent = request.getParameter("rent");
+
+                                id = request.getParameter("id");
                                 if (inputContent.length() == 0) {
                         %>
                         <script language="javascript">
@@ -103,7 +123,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         </script>
                         <%
                         } else {
-                            rb.updateReview(inputTitle, inputContent, id);
+                            rb.updateRoom(inputTitle, inputContent,inputDeposit,inputRent,id);
                         %>
                         <script language="javascript">
                             alert("수정 완료");

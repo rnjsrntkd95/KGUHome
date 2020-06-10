@@ -1,15 +1,18 @@
 <%@ page contentType="text/html;charset=utf-8" language="java" import="java.lang.String" %>
-<%@ page import="jiwoo.database.DBcon" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="jiwoo.database.reviewBoard.reviewBoard" %>
+<%@ page import="jiwoo.database.reviewBoard.infoBoard" %>
+<%@ page import="jiwoo.database.roommateBoard.roommateBoard" %>
+
+<!DOCTYPE HTML>
 <!--
 Editorial by HTML5 UP
 html5up.net | @ajlkn
 Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-
+<html>
 <head>
-    <title>글 작성 페이지</title>
+    <title>Elements - Editorial by HTML5 UP</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <!--[if lte IE 8]>
@@ -43,80 +46,47 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
             <!-- Content -->
             <section>
-                <!-- Elements -->
-                <h2 id="elements">후기 게시판</h2>
-                <div class="row 200%">
-                    <div class="6u 12u$(medium)">
+                <header class="main">
+                    <h1>룸메이트 게시판 조회</h1>
+                </header>
 
-                        <h3>글 수정</h3>
-                        <%
-                            String title = null;
-                            String body = null;
-                            reviewBoard rb = new reviewBoard();
+                <!-- Table -->
+                <h3>글 목록</h3>
+                <%
+                    ArrayList<String> list = new ArrayList<String>();
+                    roommateBoard rb = new roommateBoard();
 
-                            request.setCharacterEncoding("utf-8");
-                            String id = request.getParameter("id");
-                            int number=-1;
-                            ArrayList<String> result = new ArrayList<String>();
-                            if(id!=null) {
-                                result = rb.selectOneReview(id);
-
-                                title = result.get(1);
-                                body = result.get(2);
-                            }
-
-                        %>
-
-                        <form method="get" action="">
-                            <div class="row uniform">
-                                <div class="6u 12u$(xsmall)">
-                                    <input type="text" name="title" id="title" value="<%=title%>" placeholder="<%=title%>"/>
-                                </div>
-
-                                <!-- Break -->
-                                <div class="12u$">
-                                    <textarea name="content" id="content" placeholder="<%=body%>"
-                                              rows="6"><%=body%></textarea>
-                                </div>
-                                <input type="hidden" id="id" name="id" value="<%=id%>">
-                                <!-- Break -->
-                                <div class="12u$">
-                                    <ul class="actions">
-                                        <li><input type="submit" value="작성완료" class="special"/></li>
-                                        <li><input type="reset" value="초기화"/></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </form>
-
-                        <%
-                            String inputTitle;
-                            String inputContent;
-                            if (request.getParameter("title") != null && request.getParameter("content") != null) {
-                                inputTitle = request.getParameter("title");
-                                inputContent = request.getParameter("content");
-                                id=request.getParameter("id");
-                                if (inputContent.length() == 0) {
-                        %>
-                        <script language="javascript">
-                            alert("내용이 없습니다");
-                        </script>
-                        <%
-                        } else {
-                            rb.updateReview(inputTitle, inputContent, id);
-                        %>
-                        <script language="javascript">
-                            alert("수정 완료");
-                            window.location.href = 'http://localhost:8080';
-                        </script>
-                        <%
-                                }
-                            }
-                        %>
-
-
-                    </div>
+                    list=rb.selectRoommate();
+                %>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>title</th>
+                            <th>date</th>
+                            <th>time</th>
+                            <th>views</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <%for(int i=0;i<list.size();i+=7){%>
+                        <tr>
+                            <td><%=list.get(i)%></td>
+                            <td><a href="roommateRead.jsp?id=<%=list.get(i)%>"><%=list.get(i+1)%></a></td>
+                            <td><%=list.get(i+3)%></td>
+                            <td><%=list.get(i+4)%></td>
+                            <td><%=list.get(i+5)%></td>
+                        </tr>
+                        <%}%>
+                        </tbody>
+                    </table>
                 </div>
+
+
+                <ul class="actions">
+                    <li style="float: right"><a href="roommateCreate.jsp" class="button special">작성하기</a></li>
+                </ul>
 
             </section>
 

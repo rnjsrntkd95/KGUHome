@@ -1,7 +1,9 @@
-<%@ page contentType="text/html;charset=utf-8" language="java" import="java.lang.String" %>
+<%@ page contentType="text/html;charset=euc-kr" language="java" import="java.lang.String" %>
 <%@ page import="jiwoo.database.DBcon" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="jiwoo.database.reviewBoard.reviewBoard" %>
+<%@ page import="jiwoo.database.reviewBoard.infoBoard" %>
+<%@ page import="jiwoo.database.roommateBoard.roommateBoard" %>
 <!--
 Editorial by HTML5 UP
 html5up.net | @ajlkn
@@ -9,7 +11,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 -->
 
 <head>
-    <title>Í∏Ä ÏûëÏÑ± ÌéòÏù¥ÏßÄ</title>
+    <title>±€ ¿€º∫ ∆‰¿Ã¡ˆ</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <!--[if lte IE 8]>
@@ -44,76 +46,23 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <!-- Content -->
             <section>
                 <!-- Elements -->
-                <h2 id="elements">ÌõÑÍ∏∞ Í≤åÏãúÌåê</h2>
+                <h2 id="elements">∑Î∏ﬁ¿Ã∆Æ ∞‘Ω√∆«</h2>
                 <div class="row 200%">
                     <div class="6u 12u$(medium)">
 
-                        <h3>Í∏Ä ÏàòÏ†ï</h3>
+                        <h3>±€ ªË¡¶</h3>
                         <%
-                            String title = null;
-                            String body = null;
-                            reviewBoard rb = new reviewBoard();
+                            roommateBoard rb = new roommateBoard();
 
                             request.setCharacterEncoding("utf-8");
                             String id = request.getParameter("id");
-                            int number=-1;
-                            ArrayList<String> result = new ArrayList<String>();
-                            if(id!=null) {
-                                result = rb.selectOneReview(id);
-
-                                title = result.get(1);
-                                body = result.get(2);
+                            if (id != null) {
+                                rb.deleteRoommate(id);
                             }
 
                         %>
 
-                        <form method="get" action="">
-                            <div class="row uniform">
-                                <div class="6u 12u$(xsmall)">
-                                    <input type="text" name="title" id="title" value="<%=title%>" placeholder="<%=title%>"/>
-                                </div>
-
-                                <!-- Break -->
-                                <div class="12u$">
-                                    <textarea name="content" id="content" placeholder="<%=body%>"
-                                              rows="6"><%=body%></textarea>
-                                </div>
-                                <input type="hidden" id="id" name="id" value="<%=id%>">
-                                <!-- Break -->
-                                <div class="12u$">
-                                    <ul class="actions">
-                                        <li><input type="submit" value="ÏûëÏÑ±ÏôÑÎ£å" class="special"/></li>
-                                        <li><input type="reset" value="Ï¥àÍ∏∞Ìôî"/></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </form>
-
-                        <%
-                            String inputTitle;
-                            String inputContent;
-                            if (request.getParameter("title") != null && request.getParameter("content") != null) {
-                                inputTitle = request.getParameter("title");
-                                inputContent = request.getParameter("content");
-                                id=request.getParameter("id");
-                                if (inputContent.length() == 0) {
-                        %>
-                        <script language="javascript">
-                            alert("ÎÇ¥Ïö©Ïù¥ ÏóÜÏäµÎãàÎã§");
-                        </script>
-                        <%
-                        } else {
-                            rb.updateReview(inputTitle, inputContent, id);
-                        %>
-                        <script language="javascript">
-                            alert("ÏàòÏ†ï ÏôÑÎ£å");
-                            window.location.href = 'http://localhost:8080';
-                        </script>
-                        <%
-                                }
-                            }
-                        %>
-
+                        ªË¡¶µ«æ˙Ω¿¥œ¥Ÿ.
 
                     </div>
                 </div>
