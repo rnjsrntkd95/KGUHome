@@ -15,8 +15,8 @@ public class DBcon {
     public DBcon() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/KGUHOME?serverTimezone=UTC",
-                    "root", "4503");
+            con = DriverManager.getConnection("jdbc:mysql://58.121.58.139:3306/KGUHOME?serverTimezone=UTC",
+                    "tester1", "qwer1234");
 
             if (con != null) {
                 System.out.println("DB access success");

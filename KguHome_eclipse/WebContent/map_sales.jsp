@@ -8,8 +8,6 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <link rel="stylesheet" href="./assets/css/all_sale_map.css" />
 
-	<script src="./assets/js/all_map_sale.js"></script>
-
 </head>
 <body>
 	<p id="result"></p>
@@ -20,8 +18,6 @@
 	<div id="map" style="width: 400px; height: 400px;"></div>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=291ae91548b72e5c96e2ad42f5772f46"></script>
-		
-		
 		
 	<script>
 	

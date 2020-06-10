@@ -20,6 +20,11 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화하세요 (https://github.com/scottjehl/Respond) -->
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        
+        <style>
+
+        </style>
+       
 	</head>
 	<body>
 
@@ -51,7 +56,7 @@
 
           <label>아이디</label>
 
-          <input type="text" name="user_id" class="form-control">
+          <input type="text" name="user_id" class="form-control" autocomplete="off" style="width: 300px;">
 
         </div>
 
@@ -59,7 +64,7 @@
 
           <label>비밀번호</label>
 
-          <input type="password" name="pwd" class="form-control">
+          <input type="password" name="pwd" class="form-control" autocomplete="off" style="width: 300px;">
 
         </div>
 
@@ -67,7 +72,7 @@
 
           <label>닉네임</label>
 
-          <input type="text" name="nickname" class="form-control">
+          <input type="text" name="nickname" class="form-control" autocomplete="off" style="width: 300px;">
 
         </div>
         
@@ -76,17 +81,17 @@
 
           <label>이메일</label>
 
-          <input type="email" name="userEmail" class="form-control">
+          <input type="email" name="userEmail" class="form-control" autocomplete="off" style="width: 300px;" placeholder="KGUHome@kyonggi.ac.kr">
 
         </div>
         <div class="form-group">
 
           	<label>등급</label>
-          <input type="text" name="grade" value = "1" class="form-control" readonly>
+          <input type="text" name="grade" value = "1" class="form-control grade" style="width: 44px;" readonly>
 
         </div>
 
-        <button type="submit" class="btn btn-primary">회원가입</button>
+        <button type="submit" class="button big">회원가입</button>        
 
       </form>
 

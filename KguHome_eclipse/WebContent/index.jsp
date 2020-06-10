@@ -12,7 +12,7 @@
 -->
 <html lang="ko">
 <head>
-<title>Editorial by HTML5 UP</title>
+<title>KGU Home</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -22,6 +22,32 @@
 
 <!--[if lte IE 9]><link rel="stylesheet" href="./resources/assets/css/ie9.css" /><![endif]-->
 <!--[if lte IE 8]><link rel="stylesheet" href="./resources/assets/css/ie8.css" /><![endif]-->
+
+<style>
+.main-title {
+	font-weight: bold;
+	display: flex;
+}
+
+#banner h1 {
+	width: 100%;
+	margin-left: 30px;
+}
+
+#main>.inner>section {
+	padding-top: 2em;
+}
+
+.famous-title {
+	display: flex;
+	justify-content: space-between;
+}
+
+.famous-title > h3 {
+	line-height: 41px;
+}
+</style>
+
 </head>
 <body>
 	<%
@@ -54,7 +80,6 @@
 
 	}
 	%>
-	<!-- Wrapper -->
 	<div id="wrapper">
 
 		<!-- Main -->
@@ -62,9 +87,76 @@
 			<div class="inner">
 
 				<!-- Header -->
-				<header id="header">
-					<a href="index.jsp" class="logo"><strong>Editorial</strong> by
-						HTML5 UP</a>
+				<!-- 				<header id="header">
+					<a href="index.jsp" class="logo"><strong>자취생을 위한 커뮤니티</strong> by
+						KGU Home</a>
+				
+				</header> -->
+
+				<!-- Banner -->
+				<section id="banner">
+					<div class="content">
+						<header>
+							<h1>KGU Home</h1>
+						</header>
+					</div>
+					<div id="map" style="width: 100%; height: 600px;"></div>
+				</section>
+
+				<!-- Section -->
+
+
+				<!-- Section -->
+				<section>
+					<header class="major">
+						<h2>인기글</h2>
+					</header>
+					<div class="posts">
+						<article>
+							<div class="famous-title">
+								<h3>방거래 게시판</h3>
+								<ul class="actions">
+									<li><a href="#" class="button">More</a></li>
+								</ul>
+							</div>
+							<p>Aenean ornare velit lacus, ac varius enim lorem
+								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
+								nulla amet lorem feugiat tempus aliquam.</p>
+				
+						</article>
+						<article>
+							<h3>리뷰 게시판</h3>
+							<p>Aenean ornare velit lacus, ac varius enim lorem
+								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
+								nulla amet lorem feugiat tempus aliquam.</p>
+					
+						</article>
+						<article>
+							<h3>정보 게시판</h3>
+							<p>Aenean ornare velit lacus, ac varius enim lorem
+								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
+								nulla amet lorem feugiat tempus aliquam.</p>
+						
+						</article>
+						<article>
+							<h3>룸메이트 구인</h3>
+							<p>Aenean ornare velit lacus, ac varius enim lorem
+								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
+								nulla amet lorem feugiat tempus aliquam.</p>
+				
+						</article>
+
+					</div>
+				</section>
+
+			</div>
+		</div>
+
+		<!-- Sidebar -->
+		<div id="sidebar">
+			<div class="inner">
+				<!-- Menu -->
+				<nav id="menu">
 					<ul class="icons">
 						<%
 							if (user_id == null) {
@@ -84,121 +176,7 @@
 							}
 						%>
 					</ul>
-				</header>
 
-				<!-- Banner -->
-				<section id="banner">
-					<div class="content">
-						<header>
-							<h1>
-								Hi, I’m Editorial<br /> by HTML5 UP
-							</h1>
-							<p>A free and fully responsive site template</p>
-						</header>
-						<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu.
-							Proin aliquam facilisis ante interdum congue. Integer mollis,
-							nisl amet convallis, porttitor magna ullamcorper, amet egestas
-							mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id
-							euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor
-							sit nullam.</p>
-						<ul class="actions">
-							<li><a href="#" class="button big">Learn More</a></li>
-						</ul>
-					</div>
-					<div id="map" style="width: 800px; height: 425px;"></div>
-					
-				</section>
-
-				<!-- Section -->
-		
-
-				<!-- Section -->
-				<section>
-					<header class="major">
-						<h2>Ipsum sed dolor</h2>
-					</header>
-					<div class="posts">
-						<article>
-							<a href="#" class="image"><img
-								src="./resources/images/pic01.jpg" alt="" /></a>
-							<h3>Interdum aenean</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img
-								src="./resources/images/pic02.jpg" alt="" /></a>
-							<h3>Nulla amet dolore</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
-							<h3>Tempus ullamcorper</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
-							<h3>Sed etiam facilis</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
-							<h3>Feugiat lorem aenean</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
-							<h3>Amet varius aliquam</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-					</div>
-				</section>
-
-			</div>
-		</div>
-
-		<!-- Sidebar -->
-		<div id="sidebar">
-			<div class="inner">
-
-				<!-- Search -->
-				<section id="search" class="alt">
-					<form method="post" action="#">
-						<input type="text" name="query" id="query" placeholder="Search" />
-					</form>
-				</section>
-
-				<!-- Menu -->
-				<nav id="menu">
 					<header class="major">
 						<h2>Menu</h2>
 					</header>
@@ -216,18 +194,16 @@
 							<ul>
 								<li><a href="reviewCreate.jsp">Edit Review</a></li>
 								<li><a href="roomCreate.jsp">Edit Room info</a></li>
-							</ul>
-						</li>
+							</ul></li>
 						<li><span class="opener">Messenger</span>
 							<ul>
 								<li><a href="messageSend.jsp">쪽지 보내기</a></li>
 								<li><a href="receivedMessages.jsp">받은 쪽지</a></li>
 								<li><a href="sentMessages.jsp">보낸 쪽지</a></li>
-								
-							</ul>
-						</li>
-						
-				<!-- 		
+
+							</ul></li>
+
+						<!-- 		
 
 						<li><a href="index.jsp">Homepage</a></li>
 						<li><a href="generic.html">Generic</a></li>
@@ -294,16 +270,16 @@
 	<script src="./resources/assets/js/util.js"></script>
 	<!--[if lte IE 8]><script src="./resources/assets/js/ie/respond.min.js"></script><![endif]-->
 	<script src="./resources/assets/js/main.js"></script>
-	
+
 	<!-- Map Script -->
-		<script type="text/javascript"
+	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=291ae91548b72e5c96e2ad42f5772f46"></script>
-		
+
 	<script>
 	
 		var container = document.getElementById('map');
 		var options = {
-			center: new kakao.maps.LatLng(37.3004755, 127.034374),
+			center: new kakao.maps.LatLng(37.2987948, 127.0374455),
 			level : 5
 		};
 

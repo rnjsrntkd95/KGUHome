@@ -2,7 +2,14 @@
 <%@ page import="myPageBoard.myPageBoard" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	int uid = 1;	// 로그인 정보 가져올 것!
+	String user_id = null;
+	
+	if(session.getAttribute("user_id") != null) {
+	
+		user_id = (String) session.getAttribute("user_id");
+	
+	}
+	
 	myPageBoard mp = new myPageBoard();
 %>
 <!DOCTYPE html>
@@ -18,8 +25,6 @@
     <link rel="stylesheet" href="assets/css/ie9.css"/><![endif]-->
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="assets/css/ie8.css"/><![endif]-->
-
-	<link rel="stylesheet" type="text/css" href="assets/css/profile.css">
 </head>
 <body>
 <!-- Wrapper -->
@@ -47,9 +52,9 @@
 				<!-- 프로필 사진 변경할 수 있도록 추후 수정 -->
 				<span><img class="profile" src = "image/default_profile.jpg" alt="" /></span>
 				<div class="userinfo" >	
-					<h2>Nickname</h2>
-					<h3>ID</h3>
-					<p><span>Grade</span></p>
+					<h2><%=mp.getNickName(user_id) %></h2>
+					<h3><%=mp.getID(user_id) %></h3>
+					<p><span><%=mp.getGrade(user_id) %></span></p>
 					
 					<ul class="actions">
 						<li><a href="editMyInfo.jsp" class="button">내 정보 수정</a></li>

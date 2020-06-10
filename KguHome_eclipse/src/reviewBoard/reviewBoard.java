@@ -44,14 +44,14 @@ public class reviewBoard {
             stmt = db.con.createStatement();
             res = stmt.executeQuery(sql);
 
-            while(db.rs.next()){
-                result.add(db.rs.getString("id"));
-                result.add(db.rs.getString("title"));
-                result.add(db.rs.getString("content"));
-                result.add(db.rs.getString("date"));
-                result.add(db.rs.getString("time"));
-                result.add(db.rs.getString("views"));
-                result.add(db.rs.getString("uid"));
+            while(res.next()){
+                result.add(res.getString("id"));
+                result.add(res.getString("title"));
+                result.add(res.getString("content"));
+                result.add(res.getString("date"));
+                result.add(res.getString("time"));
+                result.add(res.getString("views"));
+                result.add(res.getString("uid"));
             }
 
         } catch (SQLException throwables) {

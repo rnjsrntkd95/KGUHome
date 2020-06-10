@@ -20,7 +20,7 @@ public class myPageBoard {
         db = new DBcon();
     }
 
-    public String getNickName(int uid){
+    public String getNickName(String uid){
     	
     	String query = "select nickname from user where uid="+uid;
 
@@ -28,7 +28,7 @@ public class myPageBoard {
         	stmt = db.con.createStatement();
         	res = stmt.executeQuery(query);
             
-        	nickname = db.rs.getString("nickname");
+        	nickname = res.getString("nickname");
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -37,7 +37,7 @@ public class myPageBoard {
         return nickname;
     }
     
-	public String getID(int uid){
+	public String getID(String uid){
 	    	
 	    	String query = "select user_id from user where uid="+uid;
 	
@@ -45,7 +45,7 @@ public class myPageBoard {
 	        	stmt = db.con.createStatement();
 	        	res = stmt.executeQuery(query);
 	            
-	        	userId = db.rs.getString("user_id");
+	        	userId = res.getString("user_id");
 	
 	        } catch (SQLException throwables) {
 	            throwables.printStackTrace();
@@ -55,7 +55,7 @@ public class myPageBoard {
 	        
 	    }
 	
-	public String getGrade(int uid){
+	public String getGrade(String uid){
     	
     	String query = "select grade from user where uid="+uid;
 
@@ -73,7 +73,7 @@ public class myPageBoard {
     }
 	
 	
-	public URL getProfileImage(int uid){
+	public URL getProfileImage(String uid){
 	    	
 	    	String query = "select profile from user where uid="+uid;
 	
