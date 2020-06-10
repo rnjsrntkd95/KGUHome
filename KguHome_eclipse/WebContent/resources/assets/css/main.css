@@ -2539,7 +2539,8 @@
 		}
 
 		.icon > .label {
-			display: none;
+			padding-left: 4px;
+			font-size: 0.8em;
 		}
 
 /* Image */

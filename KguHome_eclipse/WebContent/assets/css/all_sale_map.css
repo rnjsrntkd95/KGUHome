@@ -110,3 +110,9 @@
 		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png)
 		no-repeat 0 bottom;
 }
+
+#map {
+    border: solid 2px #f56a6a;
+    border-radius: 5px;
+    margin-left: 30px;
+}
