@@ -7,118 +7,7 @@
 <title>Insert title here</title>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <style>
-.overlay_info {
-	border-radius: 6px;
-	margin-bottom: 12px;
-	float: left;
-	position: relative;
-	border: 1px solid #ccc;
-	border-bottom: 2px solid #ddd;
-	background-color: #fff;
-	bottom: 13px;
-}
 
-.overlay_info:nth-of-type(n) {
-	border: 0;
-	box-shadow: 0px 1px 2px #888;
-}
-
-.overlay_info a {
-	display: block;
-	background: #2196f3;
-	text-decoration: none;
-	color: #fff;
-	padding: 12px 30px 12px 14px;
-	font-size: 14px;
-	border-radius: 6px 6px 0 0
-}
-
-.overlay_info .fa-home {
-	font-size: 1.2em;
-}
-
-.overlay_info .fa-times {
-	font-size: 1.3em;
-	color: white;
-	float: right;
-	position: relative;
-	bottom: 32px;
-	right: 10px;
-}
-
-.overlay_info a .title {
-	padding-left: 10px;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	width: 130px;
-	display: inline-block;
-	line-height: 14px;
-}
-
-.overlay_info .desc {
-	padding: 14px;
-	padding-bottom: 0px;
-	position: relative; 
-	top: -18px;
-	width: 190px;
-	height: 56px;
-	display: flex;
-	flex-direction: row;
-}
-
-.overlay_info img {
-	vertical-align: top;
-}
-
-.overlay_info .sale-info {
-	padding-left: 10px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	width: 100%;
-}
-
-.overlay_info .price {
-	font-size: 12px;
-	color: #333;
-/* 	position: absolute;
-	left: 80px;
-	right: 14px;
-	top: 24px; */
-	white-space: normal
-}
-
-.overlay_info .bookmark_btn {
-	color: #2196f3;
-	position: relative;
-	left: 193px;
-	background: none;
-	border: 0px;
-	outline: 0;
-	z-index: 10;
-}
-
-.overlay_info .create_at {
-	font-size: 8px;
-	display: flex;
-	justify-content: flex-end;
-	width: 100%;
-	color: #2196f3;
-}
-
-.overlay_info:after {
-	content: '';
-	position: absolute;
-	margin-left: -11px;
-	left: 50%;
-	bottom: -12px;
-	width: 22px;
-	height: 12px;
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png)
-		no-repeat 0 bottom;
-}
 </style>
 
 </head>
@@ -213,6 +102,7 @@
 				created_at: '2020-06-03'
 			}, 
 		];
+		
 		
 		function closeSaleInfo(target) {
 			openedSaleMarker.setVisible(true);

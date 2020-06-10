@@ -28,6 +28,7 @@ public class DBcon {
             System.out.println("DB access failed");
             e.printStackTrace();
         }
+        System.out.println();
     }
 
 

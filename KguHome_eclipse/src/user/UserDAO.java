@@ -28,13 +28,13 @@ public class UserDAO {
 
 		try {
 
-			String dbURL = "jdbc:mysql://localhost:3306/kguhome";
+			String dbURL = "jdbc:mysql://localhost:3306/KGUHOME?serverTimezone=UTC";
 
 			String dbID = "root";
 
-			String dbPassword = "1234";
+			String dbPassword = "4503";
 
-			Class.forName("org.mariadb.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 			
@@ -65,15 +65,15 @@ public class UserDAO {
 
 				if(rs.getString(1).equals(pwd))
 
-					return 1; // ·Î±×ÀÎ ¼º°ø
+					return 1; // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 				else
 
-					return 0; // ºñ¹Ð¹øÈ£ Æ²¸²
+					return 0; // ï¿½ï¿½Ð¹ï¿½È£ Æ²ï¿½ï¿½
 
 			}
 
-			return -1; // ¾ÆÀÌµð ¾øÀ½
+			return -1; // ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		} catch (SQLException e) {
 
@@ -81,7 +81,7 @@ public class UserDAO {
 
 		}
 
-		return -2; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return -2; // ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	}
 
@@ -115,7 +115,7 @@ public class UserDAO {
 
 		}
 
-		return -1; // È¸¿ø°¡ÀÔ ½ÇÆÐ
+		return -1; // È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	}
 
@@ -135,7 +135,7 @@ public class UserDAO {
 
 			while(rs.next()) {
 
-				return rs.getString(1); // ÀÌ¸ÞÀÏ ÁÖ¼Ò ¹ÝÈ¯
+				return rs.getString(1); // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½È¯
 
 			}
 
@@ -145,7 +145,7 @@ public class UserDAO {
 
 		}
 
-		return null; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return null; // ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	}
 
@@ -156,7 +156,6 @@ public class UserDAO {
 		String SQL = "SELECT certified FROM USER WHERE user_id = ?";
 
 		try {
-
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 
 			pstmt.setString(1, user_id);
@@ -165,7 +164,7 @@ public class UserDAO {
 
 			while(rs.next()) {
 
-				return rs.getBoolean(1); // ÀÌ¸ÞÀÏ µî·Ï ¿©ºÎ ¹ÝÈ¯
+				return rs.getBoolean(1); 
 
 			}
 
@@ -175,7 +174,7 @@ public class UserDAO {
 
 		}
 
-		return false; // µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return false;
 
 	}
 
@@ -193,7 +192,7 @@ public class UserDAO {
 
 			pstmt.executeUpdate();
 
-			return true; // ÀÌ¸ÞÀÏ µî·Ï ¼³Á¤ ¼º°ø
+			return true; // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		} catch (SQLException e) {
 
@@ -201,7 +200,7 @@ public class UserDAO {
 
 		}
 
-		return false; // ÀÌ¸ÞÀÏ µî·Ï ¼³Á¤ ½ÇÆÐ
+		return false; // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	}
 
