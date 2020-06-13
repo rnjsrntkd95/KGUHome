@@ -5,14 +5,13 @@
 <%@ page import="java.io.PrintWriter"%>
 
 <%
-
 	session.invalidate();
 
 %>
 
 <script>
 
-	location.href = 'index.jsp';
+	location.href = 'index';
 
 </script>
 

@@ -21,6 +21,14 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 </head>
 <body>
+<% request.setCharacterEncoding("utf-8"); 
+		String user_id = null;
+
+	if (session.getAttribute("user_id") != null) {
+
+		user_id = (String) session.getAttribute("user_id");
+
+	}%>
 
 <!-- Wrapper -->
 <div id="wrapper">
@@ -31,7 +39,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
             <!-- Header -->
             <header id="header">
-                <a href="index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>
+					<a href="index" class="logo"><strong>KGU Home</strong></a>
                 <ul class="icons">
                     <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
                     <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
@@ -60,15 +68,30 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                             result=rb.selectOneRoommate(id);
                             String title=result.get(1);
                             String body=result.get(2);
+                            String uid = result.get(6);
                         %>
                         <h3><%=title%></h3>
                         <p><%=body%></p>
                     </div>
                 </div>
+                <%
+                    String sessionUid = null;
+
+                    if (session.getAttribute("uid") != null) {
+
+                        sessionUid = (String) session.getAttribute("uid");
+
+                    }
+
+                    if(sessionUid.equals(uid)){
+                %>
                 <ul class="actions">
                     <li><a href="roommateEdit.jsp?id=<%=id%>" class="button special">수정하기</a></li>
                     <li><a href="roommateDelete.jsp?id=<%=id%>" class="button">삭제하기</a></li>
                 </ul>
+                <%
+                    }
+                %>
                 <hr class="major" />
 
             </section>
@@ -76,97 +99,57 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         </div>
     </div>
 
-    <!-- Sidebar -->
-    <div id="sidebar">
-        <div class="inner">
+  						<!-- Sidebar -->
+		<div id="sidebar">
+			<div class="inner">
+				<!-- Menu -->
+				<nav id="menu">
+					<ul class="icons login">
+						<%
+							if (user_id == null) {
+						%>
+						<li><a href="join.jsp" class="icon fa-users"><span
+								class="label">회원 가입</span></a></li>
+						<li style="border: 0;"><a href="login.jsp"
+							class="icon fa-user"><span class="label">로그인</span></a></li>
+						<%
+							} else {
+						%>
+						<li><a href="myPage.jsp" class="icon fa-cog"><span
+								class="label">마이 페이지</span></a></li>
+						<li style="border: 0;"><a href="userLogout.jsp"
+							class="icon fa-times"><span class="label">로그아웃</span></a></li>
+						<%
+							}
+						%>
+					</ul>
 
-            <!-- Search -->
-            <section id="search" class="alt">
-                <form method="post" action="#">
-                    <input type="text" name="query" id="query" placeholder="Search" />
-                </form>
-            </section>
+					<header class="major">
+						<h2>Menu</h2>
+					</header>
+					<ul class="side-menu">
+						<li><a href="roomList.jsp">거래 게시판</a></li>
+						<li><a href="reviewList.jsp">리뷰 게시판</a></li>
+						<li><a href="infoList.jsp">정보 게시판</a></li>
+						<li><a href="roommateList.jsp">룸메이트 구인 게시판</a></li>
+					</ul>
+				</nav>
 
-            <!-- Menu -->
-            <nav id="menu">
-                <header class="major">
-                    <h2>Menu</h2>
-                </header>
-                <ul>
-                    <li><a href="index.html">Homepage</a></li>
-                    <li><a href="generic.html">Generic</a></li>
-                    <li><a href="elements.html">Elements</a></li>
-                    <li>
-                        <span class="opener">Submenu</span>
-                        <ul>
-                            <li><a href="#">Lorem Dolor</a></li>
-                            <li><a href="#">Ipsum Adipiscing</a></li>
-                            <li><a href="#">Tempus Magna</a></li>
-                            <li><a href="#">Feugiat Veroeros</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Etiam Dolore</a></li>
-                    <li><a href="#">Adipiscing</a></li>
-                    <li>
-                        <span class="opener">Another Submenu</span>
-                        <ul>
-                            <li><a href="#">Lorem Dolor</a></li>
-                            <li><a href="#">Ipsum Adipiscing</a></li>
-                            <li><a href="#">Tempus Magna</a></li>
-                            <li><a href="#">Feugiat Veroeros</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Maximus Erat</a></li>
-                    <li><a href="#">Sapien Mauris</a></li>
-                    <li><a href="#">Amet Lacinia</a></li>
-                </ul>
-            </nav>
+				<!-- Section -->
+				<section>
+					<header class="major">
+						<h2>맛동산 팀 (5조)</h2>
+					</header>
+					<p>경기대학교 학우들의 건강한 자취 생활을 위한 웹 커뮤니티입니다.</p>
+					<ul class="contact">
+						<li class="fa-envelope-o"><a href="#">KGUHome@gmail.com</a></li>
+						<li class="fa-home">경기대학교 컴퓨터공학부<br />경기도 수원시 영통구 광교산로 143-42</li>
+						
+					</ul>
+				</section>
+			</div>
+		</div>
 
-            <!-- Section -->
-            <section>
-                <header class="major">
-                    <h2>Ante interdum</h2>
-                </header>
-                <div class="mini-posts">
-                    <article>
-                        <a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-                    </article>
-                    <article>
-                        <a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
-                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-                    </article>
-                    <article>
-                        <a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
-                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-                    </article>
-                </div>
-                <ul class="actions">
-                    <li><a href="#" class="button">More</a></li>
-                </ul>
-            </section>
-
-            <!-- Section -->
-            <section>
-                <header class="major">
-                    <h2>Get in touch</h2>
-                </header>
-                <p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                <ul class="contact">
-                    <li class="fa-envelope-o"><a href="#">information@untitled.tld</a></li>
-                    <li class="fa-phone">(000) 000-0000</li>
-                    <li class="fa-home">1234 Somewhere Road #8254<br />
-                        Nashville, TN 00000-0000</li>
-                </ul>
-            </section>
-
-            <!-- Footer -->
-            <footer id="footer">
-                <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-            </footer>
-
-        </div>
-    </div>
 
 </div>
 

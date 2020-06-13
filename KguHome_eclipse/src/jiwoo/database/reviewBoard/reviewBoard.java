@@ -2,6 +2,8 @@ package jiwoo.database.reviewBoard;
 
 import jiwoo.database.DBcon;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -38,6 +40,9 @@ public class reviewBoard {
         try{
             db.stmt = db.con.createStatement();
             db.rs = db.stmt.executeQuery(sql);
+            
+			ResultSet reviewRs = null;
+			PreparedStatement reviewStmt = null;
 
             while(db.rs.next()){
                 result.add(db.rs.getString("id"));
@@ -47,6 +52,15 @@ public class reviewBoard {
                 result.add(db.rs.getString("time"));
                 result.add(db.rs.getString("views"));
                 result.add(db.rs.getString("uid"));
+                
+				String sql2 = "SELECT nickname FROM user WHERE uid="+db.rs.getString("uid");
+	
+				reviewStmt = db.con.prepareStatement(sql2);
+				reviewRs = reviewStmt.executeQuery(sql2);
+				
+				while(reviewRs.next()) {
+					result.add(reviewRs.getString("nickname"));
+				}
 
             }
 

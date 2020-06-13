@@ -232,5 +232,35 @@ public class UserDAO {
 		return false; // �̸��� ��� ���� ����
 
 	}
+	
+	
+	public boolean modifiedUserInfo(String user_id, String pwd, String nickname, String userEmail, String grade, String uid) {
+
+		String SQL = "UPDATE USER SET user_id=?, pwd=?, nickname=?, userEmail=?, grade=? WHERE uid = ?";
+
+		try {
+
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, pwd);
+			pstmt.setString(3, nickname);
+			pstmt.setString(4, userEmail);
+			pstmt.setString(5, grade);
+			pstmt.setString(6, uid);
+	
+
+			pstmt.executeUpdate();
+
+			return true; 
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		}
+
+		return false; // �̸��� ��� ���� ����
+
+	}
 
 }

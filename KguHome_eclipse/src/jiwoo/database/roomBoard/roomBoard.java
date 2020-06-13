@@ -1,5 +1,7 @@
 package jiwoo.database.roomBoard;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -44,6 +46,9 @@ public class roomBoard {
 			db.stmt = db.con.createStatement();
 			db.rs = db.stmt.executeQuery(sql);
 
+			ResultSet roomRs = null;
+			PreparedStatement roomStmt = null;
+			
 			while (db.rs.next()) {
 				result.add(db.rs.getString("id"));
 				result.add(db.rs.getString("title"));
@@ -56,12 +61,22 @@ public class roomBoard {
 				result.add(db.rs.getString("longitude"));
 				result.add(db.rs.getString("deposit"));
 				result.add(db.rs.getString("rent"));
+				
+				String sql2 = "SELECT nickname FROM user WHERE uid="+db.rs.getString("uid");
+				
+				roomStmt = db.con.prepareStatement(sql2);
+				roomRs = roomStmt.executeQuery(sql2);
+				while(roomRs.next()) {
+					result.add(roomRs.getString("nickname"));
+
+				}
 
 			}
 
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
 		}
+		System.out.println(result.toString());
 
 		return result;
 	}

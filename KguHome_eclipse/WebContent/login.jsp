@@ -35,6 +35,7 @@
 </head>
 <body>
 	<%
+	request.setCharacterEncoding("utf-8");
 
 	String userID = null;
 

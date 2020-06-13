@@ -2,6 +2,8 @@ package jiwoo.database.infoBoard;
 
 import jiwoo.database.DBcon;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -45,6 +47,16 @@ public class infoBoard {
 				result.add(db.rs.getString("time"));
 				result.add(db.rs.getString("views"));
 				result.add(db.rs.getString("uid"));
+				
+				String sql2 = "SELECT nickname FROM user WHERE uid="+db.rs.getString("uid");
+				ResultSet infoRs = null;
+				PreparedStatement infoStmt = null;
+				infoStmt = db.con.prepareStatement(sql2);
+				infoRs = infoStmt.executeQuery(sql2);
+				
+				while(infoRs.next()) {
+					result.add(infoRs.getString("nickname"));
+				}
 
 			}
 

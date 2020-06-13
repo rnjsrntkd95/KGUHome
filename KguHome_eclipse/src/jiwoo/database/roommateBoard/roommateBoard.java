@@ -2,7 +2,10 @@ package jiwoo.database.roommateBoard;
 
 import jiwoo.database.DBcon;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class roommateBoard {
@@ -20,6 +23,8 @@ public class roommateBoard {
 			db.pstmt.setString(2, content);
 			db.pstmt.setString(3, "0");
 			db.pstmt.setString(4, uid);
+			
+			
 
 
 
@@ -33,9 +38,15 @@ public class roommateBoard {
 		String sql = "SELECT * FROM roommateboard ORDER BY date, time DESC" ;
 
 		ArrayList<String> result = new ArrayList<String>();
+
+		
 		try{
 			db.stmt = db.con.createStatement();
 			db.rs = db.stmt.executeQuery(sql);
+			
+			ResultSet nickRs = null;
+			PreparedStatement nickStmt = null;
+
 
 			while(db.rs.next()){
 				result.add(db.rs.getString("id"));
@@ -45,7 +56,15 @@ public class roommateBoard {
 				result.add(db.rs.getString("time"));
 				result.add(db.rs.getString("views"));
 				result.add(db.rs.getString("uid"));
-
+				String sql2 = "SELECT nickname FROM user WHERE uid="+db.rs.getString("uid");
+		
+				nickStmt = db.con.prepareStatement(sql2);
+				nickRs = nickStmt.executeQuery(sql2);
+				
+				while(nickRs.next()) {
+					result.add(nickRs.getString("nickname"));
+				}
+				
 			}
 
 		} catch (SQLException throwables) {

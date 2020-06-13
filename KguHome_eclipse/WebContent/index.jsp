@@ -3,6 +3,13 @@
 
 <%@ page import="user.UserDAO"%>
 <%@ page import="java.util.*"%>
+<%@ page import="jiwoo.database.roommateBoard.roommateBoard"%>
+<%@ page import="jiwoo.database.infoBoard.infoBoard"%>
+<%@ page import="jiwoo.database.roomBoard.roomBoard"%>
+<%@ page import="jiwoo.database.reviewBoard.reviewBoard"%>
+
+
+
 
 <!DOCTYPE HTML>
 <!--
@@ -25,38 +32,12 @@
 <!--[if lte IE 8]><link rel="stylesheet" href="./resources/assets/css/ie8.css" /><![endif]-->
 
 <style>
-.main-title {
-	font-weight: bold;
-	display: flex;
-}
-
-#banner h1 {
-	width: 100%;
-	margin-left: 30px;
-}
-
-#main>.inner>section {
-	padding-top: 2em;
-}
-
-.famous-title {
-	display: flex;
-	justify-content: space-between;
-}
-
-.famous-title>h3 {
-	line-height: 41px;
-}
-
-#menu ul a {
-	font-size: 1.0em;
-	margin-right: 10px;
-}
 </style>
 
 </head>
 <body>
 	<%
+	request.setCharacterEncoding("utf-8");
 		String user_id = null;
 
 	if (session.getAttribute("user_id") != null) {
@@ -115,33 +96,178 @@
 							<div class="famous-title">
 								<h3>거래 게시판</h3>
 								<ul class="actions">
-									<li><a href="#" class="button">More</a></li>
+									<li><a href="roomList.jsp" class="button">More</a></li>
 								</ul>
 							</div>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
+							<div>
+								<%
+                    ArrayList<String> roomList = new ArrayList<String>();
+								roomBoard rob = new roomBoard();
+
+								roomList=rob.selectRoom();
+                %>
+								<div class="table-wrapper">
+									<table>
+										<thead>
+											<tr>
+												<th>작성자</th>
+												<th>제목</th>
+
+												<th>작성일</th>
+
+												<th>조회수</th>
+											</tr>
+										</thead>
+										<tbody>
+											<%for(int i=0;i<roomList.size();i+=12){
+											if (i >36) break;%>
+											<tr>
+												<td><a
+													href="messageSend.jsp?nickname=<%=roomList.get(i+11)%>"><%=roomList.get(i + 11)%></a></td>
+												<td><a href="roomRead.jsp?id=<%=roomList.get(i)%>"><%=roomList.get(i+1)%></a></td>
+												<td><%=roomList.get(i+3)%></td>
+												<td><%=roomList.get(i+5)%></td>
+											</tr>
+											<%}%>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+
 
 						</article>
 						<article>
-							<h3>리뷰 게시판</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
+							<div class="famous-title">
+								<h3>리뷰 게시판</h3>
+								<ul class="actions">
+									<li><a href="reviewList.jsp" class="button">More</a></li>
+								</ul>
+							</div>
+							<div>
+								<%
+                    ArrayList<String> reviewList = new ArrayList<String>();
+								reviewBoard reb = new reviewBoard();
+
+								reviewList=reb.selectReview();
+                %>
+								<div class="table-wrapper">
+									<table>
+										<thead>
+											<tr>
+												<th>작성자</th>
+												<th>제목</th>
+
+												<th>작성일</th>
+
+												<th>조회수</th>
+											</tr>
+										</thead>
+										<tbody>
+											<%for(int i=0;i<reviewList.size();i+=8){
+											if (i >24) break;%>
+											<tr>
+												<td><a
+													href="messageSend.jsp?nickname=<%=reviewList.get(i+7)%>"><%=reviewList.get(i + 7)%></a></td>
+												<td><a
+													href="reviewRead.jsp?id=<%=reviewList.get(i)%>"><%=reviewList.get(i+1)%></a></td>
+												<td><%=reviewList.get(i+3)%></td>
+												<td><%=reviewList.get(i+5)%></td>
+											</tr>
+											<%}%>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
 
 						</article>
 						<article>
-							<h3>정보 게시판</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
+							<div class="famous-title">
+								<h3>정보 게시판</h3>
+								<ul class="actions">
+									<li><a href="infoList.jsp" class="button">More</a></li>
+								</ul>
+							</div>
+							<div>
+								<%
+                    ArrayList<String> infoList = new ArrayList<String>();
+								infoBoard ib = new infoBoard();
+
+								infoList=ib.selectInfo();
+                %>
+								<div class="table-wrapper">
+									<table>
+										<thead>
+											<tr>
+												<th>작성자</th>
+												<th>제목</th>
+
+												<th>작성일</th>
+
+												<th>조회수</th>
+											</tr>
+										</thead>
+										<tbody>
+											<%for(int i=0;i<infoList.size();i+=8){
+											if (i >24) break;%>
+											<tr>
+												<td><a
+													href="messageSend.jsp?nickname=<%=infoList.get(i+7)%>"><%=infoList.get(i + 7)%></a></td>
+												<td><a href="infoRead.jsp?id=<%=infoList.get(i)%>"><%=infoList.get(i+1)%></a></td>
+												<td><%=infoList.get(i+3)%></td>
+												<td><%=infoList.get(i+5)%></td>
+											</tr>
+											<%}%>
+										</tbody>
+									</table>
+								</div>
+							</div>
 
 						</article>
 						<article>
-							<h3>룸메이트 구인</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
+							<div class="famous-title">
+								<h3>룸메이트 구인 게시판</h3>
+								<ul class="actions">
+									<li><a href="roommateList.jsp" class="button">More</a></li>
+								</ul>
+							</div>
+
+							<div>
+								<%
+                    ArrayList<String> roommateList = new ArrayList<String>();
+                    roommateBoard rb = new roommateBoard();
+
+                    roommateList=rb.selectRoommate();
+                %>
+								<div class="table-wrapper">
+									<table>
+										<thead>
+											<tr>
+												<th>작성자</th>
+												<th>제목</th>
+
+												<th>작성일</th>
+
+												<th>조회수</th>
+											</tr>
+										</thead>
+										<tbody>
+											<%for(int i=0;i<roommateList.size();i+=8){
+											if (i > 24) break;%>
+											<tr>
+												<td><a
+													href="messageSend.jsp?nickname=<%=roommateList.get(i+7)%>"><%=roommateList.get(i + 7)%></a></td>
+												<td><a
+													href="roommateRead.jsp?id=<%=roommateList.get(i)%>"><%=roommateList.get(i+1)%></a></td>
+												<td><%=roommateList.get(i+3)%></td>
+												<td><%=roommateList.get(i+5)%></td>
+											</tr>
+											<%}%>
+										</tbody>
+									</table>
+								</div>
+							</div>
 
 						</article>
 
@@ -161,15 +287,15 @@
 						%>
 						<li><a href="join.jsp" class="icon fa-users"><span
 								class="label">회원 가입</span></a></li>
-						<li><a href="login.jsp" class="icon fa-user"><span
-								class="label">로그인</span></a></li>
+						<li style="border: 0;"><a href="login.jsp"
+							class="icon fa-user"><span class="label">로그인</span></a></li>
 						<%
 							} else {
 						%>
-						<li><a href="MyPage.jsp" class="icon fa-cog"><span
+						<li><a href="myPage.jsp" class="icon fa-cog"><span
 								class="label">마이 페이지</span></a></li>
-						<li><a href="userLogout.jsp" class="icon fa-times"><span
-								class="label">로그아웃</span></a></li>
+						<li style="border: 0;"><a href="userLogout.jsp"
+							class="icon fa-times"><span class="label">로그아웃</span></a></li>
 						<%
 							}
 						%>
@@ -183,81 +309,21 @@
 						<li><a href="reviewList.jsp">리뷰 게시판</a></li>
 						<li><a href="infoList.jsp">정보 게시판</a></li>
 						<li><a href="roommateList.jsp">룸메이트 구인 게시판</a></li>
-
-						<!-- 						<li><span class="opener">Content CREATE</span>
-							<ul>
-								<li><a href="reviewCreate.jsp">Create Review</a></li>
-								<li><a href="roomCreate.jsp">Create Room info</a></li>
-							</ul></li>
-						<li><span class="opener">Content EDIT</span>
-							<ul>
-								<li><a href="reviewCreate.jsp">Edit Review</a></li>
-								<li><a href="roomCreate.jsp">Edit Room info</a></li>
-							</ul></li>
-						<li><span class="opener">Messenger</span>
-							<ul>
-								<li><a href="messageSend.jsp">���� ������</a></li>
-								<li><a href="receivedMessages.jsp">���� ����</a></li>
-								<li><a href="sentMessages.jsp">���� ����</a></li>
-
-							</ul></li> -->
-
-						<!-- 		
-
-						<li><a href="index.jsp">Homepage</a></li>
-						<li><a href="generic.html">Generic</a></li>
-						<li><a href="elements.html">Elements</a></li>
-						<li><span class="opener">Submenu</span>
-							<ul>
-								<li><a href="#">Lorem Dolor</a></li>
-								<li><a href="#">Ipsum Adipiscing</a></li>
-								<li><a href="#">Tempus Magna</a></li>
-								<li><a href="#">Feugiat Veroeros</a></li>
-							</ul></li>
-						<li><a href="#">Etiam Dolore</a></li>
-						<li><a href="#">Adipiscing</a></li>
-						<li><span class="opener">Another Submenu</span>
-							<ul>
-								<li><a href="#">Lorem Dolor</a></li>
-								<li><a href="#">Ipsum Adipiscing</a></li>
-								<li><a href="#">Tempus Magna</a></li>
-								<li><a href="#">Feugiat Veroeros</a></li>
-							</ul></li>
-						<li><a href="#">Maximus Erat</a></li>
-						<li><a href="#">Sapien Mauris</a></li>
-						<li><a href="#">Amet Lacinia</a></li> -->
 					</ul>
 				</nav>
-
-
 
 				<!-- Section -->
 				<section>
 					<header class="major">
-						<h2>Get in touch</h2>
+						<h2>맛동산 팀 (5조)</h2>
 					</header>
-					<p>Sed varius enim lorem ullamcorper dolore aliquam aenean
-						ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin
-						sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat
-						tempus aliquam.</p>
+					<p>경기대학교 학우들의 건강한 자취 생활을 위한 웹 커뮤니티입니다.</p>
 					<ul class="contact">
-						<li class="fa-envelope-o"><a href="#">information@untitled.tld</a></li>
-						<li class="fa-phone">(000) 000-0000</li>
-						<li class="fa-home">1234 Somewhere Road #8254<br />
-							Nashville, TN 00000-0000
-						</li>
+						<li class="fa-envelope-o"><a href="#">KGUHome@gmail.com</a></li>
+						<li class="fa-home">경기대학교 컴퓨터공학부<br />경기도 수원시 영통구 광교산로 143-42</li>
+						
 					</ul>
 				</section>
-
-				<!-- Footer -->
-				<footer id="footer">
-					<p class="copyright">
-						&copy; Untitled. All rights reserved. Demo Images: <a
-							href="https://unsplash.com">Unsplash</a>. Design: <a
-							href="https://html5up.net">HTML5 UP</a>.
-					</p>
-				</footer>
-
 			</div>
 		</div>
 
