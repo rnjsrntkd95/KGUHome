@@ -17,10 +17,12 @@ public class reviewInsert extends HttpServlet {
 
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		String uid = request.getParameter("uid");
+
 
 		reviewBoard rb = new reviewBoard();
 
-		rb.insertReview(title,content);
+		rb.insertReview(title,content,uid);
 
 		response.sendRedirect("/index.html");
 	}

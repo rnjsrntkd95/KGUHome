@@ -18,10 +18,11 @@ public class infoInsert extends HttpServlet {
 
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		String uid = request.getParameter("uid");
 
 		infoBoard rb = new infoBoard();
 
-		rb.insertInfo(title,content);
+		rb.insertInfo(title,content,uid);
 
 		response.sendRedirect("/index.html");
 	}

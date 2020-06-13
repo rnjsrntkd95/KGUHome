@@ -22,10 +22,11 @@ public class roomInsert extends HttpServlet {
 		String rent = request.getParameter("rent");
 		String latitude = request.getParameter("latitude");
 		String longitude = request.getParameter("longitude");
+		String uid = request.getParameter("uid");
 
 		roomBoard rb = new roomBoard();
 
-		rb.insertRoom(title,content,"1",deposit,rent,latitude,longitude);
+		rb.insertRoom(title,content,uid,deposit,rent,latitude,longitude);
 
 		response.sendRedirect("/index.html");
 	}

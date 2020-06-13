@@ -51,7 +51,7 @@ public class map_sales extends HttpServlet {
 			res = stmt.executeQuery(sql);
 			
 			while(res.next()) {
-				String[] info = new String[7];
+				String[] info = new String[8];
 				
 				info[0] = res.getString("title");
 				info[1] = res.getString("deposit");
@@ -60,11 +60,9 @@ public class map_sales extends HttpServlet {
 				info[4] = res.getString("latitude");
 				info[5] = res.getString("longitude");
 				info[6] = res.getString("date");
+				info[7] = res.getString("id");
 				posts.add(info);
 			}
-			String[] a = posts.get(0);
-			
-			System.out.println(a[0]);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

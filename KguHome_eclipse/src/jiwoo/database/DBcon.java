@@ -3,7 +3,7 @@ package jiwoo.database;
 import java.sql.*;
 
 public class DBcon {
-    public String driver = "org.mariadb.jdbc.Driver";
+    public String driver = "com.mysql.cj.jdbc.Driver";
     public Connection con;
     public PreparedStatement pstmt;
     public Statement stmt;
@@ -13,7 +13,7 @@ public class DBcon {
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(
-                    "jdbc:mariadb://58.121.58.139:3306/kguhome",
+            		"jdbc:mysql://58.121.58.139:3306/KGUHOME?serverTimezone=UTC",
                     "tester1",
                     "qwer1234");
 

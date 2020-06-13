@@ -11,7 +11,7 @@ public class reviewBoard {
         db = new DBcon();
     }
 
-    public void insertReview(String title, String content){
+    public void insertReview(String title, String content,String uid){
         String sql = "Insert into reviewboard (title,content,views,uid) values(?,?,?,?)";
         System.out.println("title : "+title);
 
@@ -20,7 +20,7 @@ public class reviewBoard {
             db.pstmt.setString(1, title);
             db.pstmt.setString(2, content);
             db.pstmt.setString(3, "0");
-            db.pstmt.setString(4, "1");
+            db.pstmt.setString(4, uid);
 
 
 
@@ -47,8 +47,6 @@ public class reviewBoard {
                 result.add(db.rs.getString("time"));
                 result.add(db.rs.getString("views"));
                 result.add(db.rs.getString("uid"));
-                result.add(db.rs.getString("latitude"));
-                result.add(db.rs.getString("longitude"));
 
             }
 
@@ -77,8 +75,6 @@ public class reviewBoard {
                 result.add(db.rs.getString("time"));
                 result.add(db.rs.getString("views"));
                 result.add(db.rs.getString("uid"));
-                result.add(db.rs.getString("latitude"));
-                result.add(db.rs.getString("longitude"));
 
             }
 

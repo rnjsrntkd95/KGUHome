@@ -32,13 +32,17 @@
 
 	if (result == 1) {
 
+		String uid = userDAO.getUserUid(user_id);
+
+		session.setAttribute("uid", uid);
 		session.setAttribute("user_id", user_id);
+
 
 		PrintWriter script = response.getWriter();
 
 		script.println("<script>");
 
-		script.println("location.href='index.jsp'");
+		script.println("location.href='index'");
 
 		script.println("</script>");
 
@@ -89,5 +93,3 @@
 	}
 
 %>
-
-

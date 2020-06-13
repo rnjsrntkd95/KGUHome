@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 
 
 
@@ -23,18 +24,17 @@ public class UserDAO {
 	private ResultSet rs;
 
 
-
 	public UserDAO() {
 
 		try {
 
-			String dbURL = "jdbc:mysql://localhost:3306/KGUHOME?serverTimezone=UTC";
+			String dbURL = "jdbc:mysql://58.121.58.139:3306/KGUHOME?serverTimezone=UTC";
 
-			String dbID = "root";
+			String dbID = "tester1";
 
-			String dbPassword = "4503";
+			String dbPassword = "qwer1234";
 
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 			
@@ -89,7 +89,8 @@ public class UserDAO {
 
 	public int join(UserDTO user) {
 
-		String SQL = "INSERT INTO USER VALUES (null, ?, ?, ?, false, ?, ?, ?)";
+		String SQL = "INSERT INTO USER (user_id,pwd,grade,certified, nickname, userEmail,userEmailHash)"
+				+ " VALUES (?, ?, ?,true,?,?,?)";
 
 		try {
 
@@ -116,6 +117,34 @@ public class UserDAO {
 		}
 
 		return -1; // ȸ������ ����
+
+	}
+	
+	public String getUserUid(String user_id) {
+
+		String SQL = "SELECT uid FROM USER WHERE user_id = ?";
+
+		try {
+
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+			pstmt.setString(1, user_id);
+
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+
+				return rs.getString(1); // �̸��� �ּ� ��ȯ
+
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		}
+
+		return null; // �����ͺ��̽� ����
 
 	}
 

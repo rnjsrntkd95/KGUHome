@@ -11,7 +11,7 @@ public class infoBoard {
 		db = new DBcon();
 	}
 
-	public void insertInfo(String title, String content){
+	public void insertInfo(String title, String content,String uid){
 		String sql = "Insert into infoboard (title,content,views,uid) values(?,?,?,?)";
 
 		try{
@@ -19,7 +19,7 @@ public class infoBoard {
 			db.pstmt.setString(1, title);
 			db.pstmt.setString(2, content);
 			db.pstmt.setString(3, "0");
-			db.pstmt.setString(4, "1");
+			db.pstmt.setString(4, uid);
 
 
 

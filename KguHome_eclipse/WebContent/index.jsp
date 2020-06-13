@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html" pageEncoding="utf-8"%>
 <%@ page import="java.io.PrintWriter"%>
 
 <%@ page import="user.UserDAO"%>
-<%@ page import="java.util.*" %>
+<%@ page import="java.util.*"%>
 
 <!DOCTYPE HTML>
 <!--
@@ -68,8 +67,8 @@
 	%>
 
 
-	<%
-		boolean emailChecked = new UserDAO().getUserEmailChecked(user_id);
+	<%-- 	<%
+	boolean emailChecked = new UserDAO().getUserEmailChecked(user_id);
 
 	if (user_id != null && emailChecked == false) {
 
@@ -84,9 +83,8 @@
 		script.close();
 
 		return;
-
 	}
-	%>
+	%> --%>
 	<div id="wrapper">
 
 		<!-- Main -->
@@ -181,10 +179,10 @@
 						<h2>Menu</h2>
 					</header>
 					<ul class="side-menu">
-						<li><a href="reviewList.jsp">거래 게시판</a></li>
-						<li><a href="">리뷰 게시판</a></li>
-						<li><a href="">정보 게시판</a></li>
-						<li><a href="">룸메이트 구인 게시판</a></li>
+						<li><a href="roomList.jsp">거래 게시판</a></li>
+						<li><a href="reviewList.jsp">리뷰 게시판</a></li>
+						<li><a href="infoList.jsp">정보 게시판</a></li>
+						<li><a href="roommateList.jsp">룸메이트 구인 게시판</a></li>
 
 						<!-- 						<li><span class="opener">Content CREATE</span>
 							<ul>
@@ -328,7 +326,7 @@
 				image: finishMarkerImage
 			});
 		} 
-		
+	 	
 		
 		// ��ϵ� �Ź����� ��Ŀ ǥ��
 		var posts = [];
@@ -337,25 +335,34 @@
 				String test = (String) request.getAttribute("aa");
 				int count = 0;
 				%>
-				
+						
 		var sales = []		
- 		for (var i=0; i<<%=posts.size()%>;i++) {
+		var size = <%=posts.size()%>
+		console.log(size)
+		
+
+		for (var i=0; i<<%=posts.size()%>;i++) {
 			<% 
-			String[] post = posts.get(count);
-			count++;
+				String[] post = posts.get(count);
+				count++;
 			%>
 			var sale = {
 					title: "<%=post[0]%>",
 					deposit: "<%=post[1]%>",
 					rent: "<%=post[2]%>",
-<%-- 					image: "<%=post[3]%>",
- --%>					latitude: Number("<%=post[4]%>"),
+					image: "<%=post[3]%>",
+					latitude: Number("<%=post[4]%>"),
 					longitude: Number("<%=post[5]%>"),
-					created_at: "<%=post[6]%>"
+					created_at: "<%=post[6]%>",
+					id: "<%=post[7]%>"
 			};			
-			sales.push(sale);
+			sales.push(sale);  
 		}
-		console.log(sales);
+		
+			console.log(sales);
+
+	
+
 		
 	/* 	var sales = [
 			{	
@@ -400,7 +407,7 @@
 				}
 				openedCustomOverlay.setMap(null);
 				var content = '<div class="overlay_info">';
-				content += '    <a href="" target="_blank"><i class="fas fa-home"></i>'
+				content += '    <a href="/KguHome_eclipse/roomRead.jsp?id='+sale.id+'"><i class="fas fa-home"></i>'
 				content += '		<div class="title">'+sale.title+'</div></a>'
 				content += '		<i class="fas fa-times close-btn" onclick="closeSaleInfo(this)"></i>'
 
@@ -478,49 +485,6 @@
 */
 		}
 
-		// Ŭ���� ���� ��Ŀ ǥ�� ���� �浵 ǥ��
-		kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
-		    // Ŭ���� ����, �浵 ������ �����ɴϴ� 
-		    var latlng = mouseEvent.latLng;
-			registerMarker.setMap(null);
-			myInfoWindow.close();
-			
-			// ��Ŀ ����
-			registerMarker = new kakao.maps.Marker({
-				position: latlng,
-			});
-			registerMarker.setMap(map);
-			
-			// ���������츦 �����մϴ�
-			var iwContent = '<div style="padding:5px;">My Home!!</div>', 
-		    iwPosition = new kakao.maps.LatLng(latlng); 
-			myInfoWindow = new kakao.maps.InfoWindow({
-			    position : iwPosition, 
-			    content : iwContent,
-				removable: true
-			});
-			myInfoWindow.open(map, registerMarker); 
-				    
-			
-			////
-		    var message = 'Ŭ���� ��ġ�� ������ ' + latlng.getLat() + ' �̰�, ';
-		    message += '�浵�� ' + latlng.getLng() + ' �Դϴ�';
-		    
-		    var resultDiv = document.getElementById('result'); 
-		    resultDiv.innerHTML = message;
-		});
-		
-		// ��ǥ Ŭ�� �� ��ǥ�� ǥ�� �̺�Ʈ
-		kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
-		    // Ŭ���� ����, �浵 ������ �����ɴϴ� 
-		    var latlng = mouseEvent.latLng;
-		    
-		    var message = 'Ŭ���� ��ġ�� ������ ' + latlng.getLat() + ' �̰�, ';
-		    message += '�浵�� ' + latlng.getLng() + ' �Դϴ�';
-		    
-		    var resultDiv = document.getElementById('result'); 
-		    resultDiv.innerHTML = message;
-		});
 		
 		</script>
 

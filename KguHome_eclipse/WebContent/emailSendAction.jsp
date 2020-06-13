@@ -66,9 +66,9 @@ boolean certified = userDAO.getUserEmailChecked(user_id);
 
 		script.println("<script>");
 
-		script.println("alert('이미 인증 된 회원입니다.');");
+		script.println("alert('이미 인증 된 회원입니다.');"); 
 
-		script.println("location.href = 'index.jsp'");
+		script.println("location.href = 'index'");
 
 		script.println("</script>");
 

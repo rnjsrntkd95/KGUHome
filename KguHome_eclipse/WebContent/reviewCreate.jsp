@@ -58,6 +58,18 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                                     <textarea name="content" id="content" placeholder="Content area"
                                               rows="6"></textarea>
                                 </div>
+
+                                <%
+                                String uid = null;
+
+                                if (session.getAttribute("uid") != null) {
+
+                                uid = (String) session.getAttribute("uid");
+
+                                }
+                                %>
+
+                                <input type="hidden" id="uid" name="uid" value="<%=uid%>"/>
                                 <!-- Break -->
                                 <div class="12u$">
                                     <ul class="actions">

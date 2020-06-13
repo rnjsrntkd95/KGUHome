@@ -105,7 +105,7 @@
       UserDAO userDAO = new UserDAO();
 
       int result = userDAO.join(new UserDTO(0 , user_id, pwd, grade, false, nickname, userEmail, SHA256.getSHA256(userEmail)));
-
+	System.out.println(result + "결과");
       if (result == -1) {
 
          PrintWriter script = response.getWriter();
@@ -130,7 +130,7 @@
 
          script.println("<script>");
 
-         script.println("location.href = 'emailSendAction.jsp';");
+         script.println("location.href = 'emailSendAction.jsp?';");
 
          script.println("</script>");
 

@@ -18,10 +18,11 @@ public class roommateInsert extends HttpServlet {
 
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		String uid = request.getParameter("uid");
 
 		roommateBoard rb = new roommateBoard();
 
-		rb.insertRoommate(title,content);
+		rb.insertRoommate(title,content,uid);
 
 		response.sendRedirect("/index.html");
 	}
