@@ -40,7 +40,7 @@ public class map_sales extends HttpServlet {
 		Statement stmt;
 		ResultSet res;
 		
-		ArrayList<String[]> posts = new ArrayList<String[]>();
+		ArrayList<String> posts = new ArrayList<String>();
 		try {
 			DBcon db = new DBcon();
 			
@@ -53,15 +53,14 @@ public class map_sales extends HttpServlet {
 			while(res.next()) {
 				String[] info = new String[8];
 				
-				info[0] = res.getString("title");
-				info[1] = res.getString("deposit");
-				info[2] = res.getString("rent");
-//				info[3] = res.getString("image");
-				info[4] = res.getString("latitude");
-				info[5] = res.getString("longitude");
-				info[6] = res.getString("date");
-				info[7] = res.getString("id");
-				posts.add(info);
+				posts.add(res.getString("title"));
+				posts.add(res.getString("deposit"));
+				posts.add(res.getString("rent"));
+				posts.add(res.getString("latitude"));
+				posts.add(res.getString("longitude"));
+				posts.add(res.getString("date"));
+				posts.add(res.getString("id"));
+
 			}
 			
 		} catch (Exception e) {

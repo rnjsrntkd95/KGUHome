@@ -169,8 +169,7 @@
 											<tr>
 												<td><a
 													href="messageSend.jsp?nickname=<%=reviewList.get(i+7)%>"><%=reviewList.get(i + 7)%></a></td>
-												<td><a
-													href="reviewRead.jsp?id=<%=reviewList.get(i)%>"><%=reviewList.get(i+1)%></a></td>
+												<td><a href="reviewRead.jsp?id=<%=reviewList.get(i)%>"><%=reviewList.get(i+1)%></a></td>
 												<td><%=reviewList.get(i+3)%></td>
 												<td><%=reviewList.get(i+5)%></td>
 											</tr>
@@ -320,8 +319,10 @@
 					<p>경기대학교 학우들의 건강한 자취 생활을 위한 웹 커뮤니티입니다.</p>
 					<ul class="contact">
 						<li class="fa-envelope-o"><a href="#">KGUHome@gmail.com</a></li>
-						<li class="fa-home">경기대학교 컴퓨터공학부<br />경기도 수원시 영통구 광교산로 143-42</li>
-						
+						<li class="fa-home">경기대학교 컴퓨터공학부<br />경기도 수원시 영통구 광교산로
+							143-42
+						</li>
+
 					</ul>
 				</section>
 			</div>
@@ -397,32 +398,31 @@
 		// ��ϵ� �Ź����� ��Ŀ ǥ��
 		var posts = [];
 			<%
-				ArrayList<String[]> posts = (ArrayList<String[]>) request.getAttribute("posts");
-				String test = (String) request.getAttribute("aa");
-				int count = 0;
+				ArrayList<String> posts = (ArrayList<String>) request.getAttribute("posts");
 				%>
 						
 		var sales = []		
-		var size = <%=posts.size()%>
-		console.log(size)
-		
 
-		for (var i=0; i<<%=posts.size()%>;i++) {
-			<% 
-				String[] post = posts.get(count);
-				count++;
-			%>
+					var jsArray = [];
+
+			<%for(int i=0;i<posts.size();i++){%>
+			       jsArray.push("<%= posts.get(i)%>");
+			<%}%>
+			
+			
+		for (var i=0; i<jsArray.length;i+=7) {
+			
 			var sale = {
-					title: "<%=post[0]%>",
-					deposit: "<%=post[1]%>",
-					rent: "<%=post[2]%>",
-					image: "<%=post[3]%>",
-					latitude: Number("<%=post[4]%>"),
-					longitude: Number("<%=post[5]%>"),
-					created_at: "<%=post[6]%>",
-					id: "<%=post[7]%>"
-			};			
-			sales.push(sale);  
+					title: jsArray[i],
+					deposit: jsArray[i+1],
+					rent: jsArray[i+2],
+					latitude: Number(jsArray[i+3]),
+					longitude: Number(jsArray[i+4]),
+					created_at: jsArray[i+5],
+					id: jsArray[i+6]
+			};
+
+			sales.push(sale); 
 		}
 		
 			console.log(sales);
